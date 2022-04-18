@@ -1,0 +1,23 @@
+TODOs:
+	- HTML base structure
+		○ CSS
+		○ Create pop-up box for stats/player
+	- Game dev
+		○ Data collection + attributes
+			§ Optional subset of animals to guess from??
+			§ Provide a dropdown menu/options box for each animal??
+			§ Grid of animal options and select choice??
+				□ Need to relate animals in the table of options based upon attributes
+		○ Structure of the game box
+			§ 'grey out' box 
+			§ 'select' box
+		○ JavaScript to run it
+	- Dynamic website for each user
+		○ Storing profile info per user
+		○ Set a timer for 24hrs before the user can then play again
+			§ Encourage them to look at an external website/database to learn
+	- Statistics
+		○ Storing data over time and mapping/graphing
+		○ 'friends' within the game
+			§ Ability to search and 'add' other users by username/name
+		○ Average performance across user database
