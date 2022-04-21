@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="Home"
+     content="width=device-width, initial-scale=1, user-scalable=yes">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="home.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+
+<body onload="javaToExecuteOnLoad()">
+ <!--NavBar-->
+ <!--Title block-->
+ <!--Game Block-->
+    <!--Guess Area/Cube inputs-->
+        <!--Inputs-->
+        <!--Submit-->
+        <!--Help-->
+    <!--Hints-->
+    <!--Image-->
+<!--Rules-->
+
+ <!--NavBar-->
+ <section class = "navigation">
+    <div class = "col-md-1"></div>
+    <div class = "col-md-10">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header" id = "navbar">
+                    <a class="navbar-brand" href="#">Aussie Wilderness</a>
+                </div>
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                </ul>
+                <ul class = "nav navbar-nav navbar-right">
+                    <li><a href="#">Stats</a></li>
+                    <li><a href="#">Profile</a></li>
+                
+                <!--Needs a hover dropdown-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+            </div>
+        </nav>
+    </div>
+    <div class = "col-md-1"></div>
+</section>
+
+ <!--Title block-->
+<section class = "title">
+    <div class = "container">
+        <div class = "row" id = "Heading">
+            <div class = "col-md-4"></div>
+            <div class = "col-md-5">
+                <h1 style = "color: white;">What am I ?</h1>
+            </div>
+            <div class = "col-md-3"></div>
+        </div>
+    </div>
+</section>
+
+<section class = "gamebox">
+    <div class = "container">
+        <div class = "row" id="game_row">
+            <div class = "col-md-1"></div>
+            <div class = "col-md-6" id = "game_inputs">
+                <form name="Wordle Inputs" onsubmit= "all_ready();" method="post"> 
+                    <fieldset>
+                        <legend>Wordle Checker</legend>
+                        Target:
+                        <br>
+                        <input name = "TargetWord" type = "text" required minlength="5" maxlength="5">
+                        <br>
+                        Guess:
+                        <br>
+                        <input name = "GuessWord" type = "text" required minlength="5" maxlength="5">
+                        <br>
+                        <input name = "Submit Wordle" type = "submit" value = "Submit">
+                        <br>
+                    </fieldset>
+                </form>		
+                <br>
+                <br>
+                <p id = "WordleMessage">No Message Printed</p>
+                <br>
+            </div>
+            <!--Right column-->
+            <div class = "col-md-4" id = "game_hints">
+                <h3>Need a hint?</h3>
+                <button id = "hint1">hint 1</button>
+                <br>
+                <br>
+                <button id = "hint2">hint 2</button>
+                <br>
+                <br>
+                <button id = "hint3">hint 3</button>
+                <br>
+                <br>
+                <img src = "question.png" width = "20%">
+                <br>
+                <br>
+            </div>
+            <div class = "col-md-1"></div>
+        </div> 
+    </div> 
+
+        
+            <!--Submit-->
+            <!--Help-->
+        <!--Hints-->
+        <!--Image-->        
+        </div>
+        <div class = "col-md-2"></div>
+    </div>
+    <br>
+    <br>
+</section>
+
+<section class = "Social Footer">
+    <div class = "container">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+            <footer>
+                <div class="social">
+                    <a href="#"><img src="instagram-icon.png"></a>
+                    <a href="#"><img src="facebook-icon.png"></a>
+                    <a href="#"><img src="twitter-icon.png"></a>
+                </div>
+            </footer>
+        </div>
+        <div class = "col-md-2"></div>
+    </div>
+</section>
+</body>
+</html>
