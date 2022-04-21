@@ -38,3 +38,4 @@ GAME STRUCTURE:
 - display previously wrong guesses (like WORLDle)
 - the photo of the animal appears after the correct guess,
 - no keyboard on screen unless have heaps of time -> just use laptop keyboard or iphone keyboard pop up 
+- key to descibe each type of hint and what each actual hint means (as a popup or in a section to the side?)
