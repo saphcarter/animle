@@ -8,6 +8,7 @@ TODOs:
 			§ Provide a dropdown menu/options box for each animal??
 			§ Grid of animal options and select choice??
 				□ Need to relate animals in the table of options based upon attributes
+			§ ##Instead - worldle type inputting and hints (as below)
 		○ Structure of the game box
 			§ 'grey out' box 
 			§ 'select' box
@@ -21,3 +22,19 @@ TODOs:
 		○ 'friends' within the game
 			§ Ability to search and 'add' other users by username/name
 		○ Average performance across user database
+
+
+GAME STRUCTURE:
+- Hints are scaled in terms of helpfulness -> 3 levels of hints: 
+	- broad hints to start with and after first incorrect guess
+	- medium hints after incorrect guess 2 and 3
+	- specific guess after incorrect guesses 4 and 5
+- Hints are selected randomly from animal attributes for the day but stdized for every user
+- Begin the game with 2 or 3 hints available displayed at the top
+- Max 6 guesses
+- Each wrong guess shows a new hint next to the guess etc (a bit like WORLDle)
+- A WORLDle style search box to standardize inputted answers - such that your input is like a search of the animal name database
+- global statistics for previous day only
+- display previously wrong guesses (like WORLDle)
+- the photo of the animal appears after the correct guess,
+- no keyboard on screen unless have heaps of time -> just use laptop keyboard or iphone keyboard pop up 
