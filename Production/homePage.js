@@ -25,13 +25,7 @@ function loadFunction() {
 }
 
 
-// function guessChecker() {
-//   let guess = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
-//   if (guess == "KOALA") {
-    
-//   }
-// }
-
+let guessNum = 0;
 
 
 // doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
@@ -39,19 +33,36 @@ function rowInputer() {
   var table = document.getElementById("guessTable");
   let inputWord = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
   let target = "KOALA";
+ 
+  
+  let currentInputId = "row"+guessNum+"col0";
+  let tableInput = document.getElementById(currentInputId);
+  tableInput.innerHTML = inputWord;
 
-  for (k=0; k<6; k++) {
-    let tableInput = document.getElementById("row"+k+"col0").innerHTML;
-    console.log(tableInput)
-    if (tableInput == "guess") {
-      tableInput = inputWord;
-      if (inputWord == target) {
-        document.getElementById("row"+k+"col1").style.backgroundColor = 'green';
-      }
-      else {
-        document.getElementById("row"+k+"col1").style.backgroundColor = 'red';
-      }
-      break
-    }  
+  if (inputWord == target) {
+    document.getElementById("row"+guessNum+"col1").style.backgroundColor = 'green';
+    document.getElementById("row"+guessNum+"col0").style.backgroundColor = 'green';
+    document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
+    // reveals image of animal
+    // remove/hide input & submit elements of page
+    }
+    else {
+      document.getElementById("row"+guessNum+"col1").style.backgroundColor = 'red';
+    }
+  
+  guessNum += 1;
+
+  if (guessNum == 6) {
+    document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
+    // remove/hide input & submit elements of page
   }
-}
+  else {
+  document.getElementById("hint"+(guessNum+2)).innerHTML = "Hint "+(guessNum+3)+":" + "**hint from database**"
+  }
+  console.log(tableInput);
+  console.log(inputWord);
+  
+  }
+
+submitButton = document.getElementById('submitWord');
+submitButton.addEventListener('click', rowInputer);
