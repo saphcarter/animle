@@ -25,17 +25,26 @@ TODOs:
 
 
 GAME STRUCTURE:
-- Hints are scaled in terms of helpfulness -> 3 levels of hints: 
-	- broad hints to start with and after first incorrect guess
-	- medium hints after incorrect guess 2 and 3
-	- specific guess after incorrect guesses 4 and 5
-- Hints are selected randomly from animal attributes for the day but stdized for every user
-- Begin the game with 2 or 3 hints available displayed at the top
+- Hints are scaled in terms of helpfulness -> 7 hints: 
+	1. Climate
+	2. Size
+	3. Legs, Fins/Flippers
+	4. nightime/daytime
+	5. Tail, Wings
+	6. Classification
+	7. sleeps (ie. trees, burrows etc)
+	8. I've got: fur colour, scales 
+- On correct/max guess exhuasted
+	Endangered Rating, map of world highlighting territories (or square m2 of habitat left)
+	the photo of the animal 
+	extra info about it (cool fact?)
+
+- Begin the game with 3 hints available
 - Max 6 guesses
-- Each wrong guess shows a new hint next to the guess etc (a bit like WORLDle)
-- A WORLDle style search box to standardize inputted answers - such that your input is like a search of the animal name database
+- Each wrong guess shows a new hint 
+- An autocomplete search box to standardize inputted answers - such that your input is like a search of the animal name database
 - global statistics for previous day only
-- display previously wrong guesses (like WORLDle)
-- the photo of the animal appears after the correct guess,
+- display previously wrong guesses 
 - no keyboard on screen unless have heaps of time -> just use laptop keyboard or iphone keyboard pop up 
-- key to descibe each type of hint and what each actual hint means (as a popup or in a section to the side?)
+- key to descibe each type of hint and what each actual hint means (as a popup or in nav bar?)
+
