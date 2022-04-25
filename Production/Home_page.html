@@ -6,7 +6,7 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="homePage.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 </head>
 
 
-<body onload="javaToExecuteOnLoad()">
+<body onload="loadFunction()">
  <!--NavBar-->
  <!--Title block-->
  <!--Game Block-->
@@ -72,7 +72,7 @@
         <div class = "row" id = "Heading">
             <div class = "col-md-4"></div>
             <div class = "col-md-5">
-                <h1 style = "color: white;">What am I ?</h1>
+                <h1 style = "color: white;">Animle</h1>
             </div>
             <div class = "col-md-3"></div>
         </div>
@@ -83,42 +83,30 @@
     <div class = "container">
         <div class = "row" id="game_row">
             <div class = "col-md-1"></div>
-            <div class = "col-md-6" id = "game_inputs">
-                <form name="Wordle Inputs" onsubmit= "all_ready();" method="post"> 
-                    <fieldset>
-                        <legend>Wordle Checker</legend>
-                        Target:
-                        <br>
-                        <input name = "TargetWord" type = "text" required minlength="5" maxlength="5">
-                        <br>
-                        Guess:
-                        <br>
-                        <input name = "GuessWord" type = "text" required minlength="5" maxlength="5">
-                        <br>
-                        <input name = "Submit Wordle" type = "submit" value = "Submit">
-                        <br>
-                    </fieldset>
+            <div class = "col-md-6" id = "gameInputs">
+              <br>
+                <form onsubmit= "guessImplementer();" method="post" id="wordInputs"> 
+                  <br>
+                  <input id = "guessWord" type = "text" required style="width:70%;" placeholder="Animal Guess...">
+                  <br>
+                  <input id = "submitWord" type = "submit" value = "Submit">
+                  <br>
                 </form>		
                 <br>
                 <br>
-                <p id = "WordleMessage">No Message Printed</p>
-                <br>
             </div>
+
             <!--Right column-->
             <div class = "col-md-4" id = "game_hints">
-                <h3>Need a hint?</h3>
-                <button id = "hint1">hint 1</button>
-                <br>
-                <br>
-                <button id = "hint2">hint 2</button>
-                <br>
-                <br>
-                <button id = "hint3">hint 3</button>
-                <br>
-                <br>
-                <img src = "question.png" width = "20%">
-                <br>
-                <br>
+                <h3>Need a hint?</h3><br>
+                <p>Hint 1:</p>
+                <p>Hint 2:</p>
+                <p>Hint 3:</p>
+                <p>Hint 4:</p>
+                <p>Hint 5:</p>
+                <p>Hint 6:</p>
+                <p>Hint 7:</p>
+                <p>image of animal here</p>
             </div>
             <div class = "col-md-1"></div>
         </div> 
@@ -142,9 +130,10 @@
         <div class = "col-md-8">
             <footer>
                 <div class="social">
+                  <!--
                     <a href="#"><img src="instagram-icon.png"></a>
                     <a href="#"><img src="facebook-icon.png"></a>
-                    <a href="#"><img src="twitter-icon.png"></a>
+                    <a href="#"><img src="twitter-icon.png"></a> -->
                 </div>
             </footer>
         </div>
@@ -152,4 +141,7 @@
     </div>
 </section>
 </body>
+
+<script src="homePage.js"></script>
+
 </html>
