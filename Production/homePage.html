@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Home" content="width=device-width, initial-scale=1, user-scalable=yes">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="homePage.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid #e0e0e0;
+
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #ded9d9;
+        }
+    </style>
+
+<script>
+    function autocomplete(inp, arr) {
+        inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            closeAllLists();
+            if (!val) { return False; }
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("div")
+            a.setAttribute("id", this.id + "autocomplete-list")
+            a.setAttribute("class", "autocomplete-items")
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a)
+            for (i = 0; i < arr.length; i++) {
+                /*find items that make text field and create div */
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    b = document.createElement("div")
+                    /*style choice - make the matching letters bold?:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    b.addEventListener("click", function (e) {
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        function closeAllLists() {
+            var toclose = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < toclose.length; i++) {
+                toclose[i].parentNode.removeChild(toclose[i]);
+            }
+        };
+    }
+    </script>
+
+</head>
+
+<body onload="loadFunction()">
+ <!--NavBar-->
+ <!--Title block-->
+ <!--Game Block-->
+    <!--Guess Area/Cube inputs-->
+    <!--Inputs-->
+    <!--Submit-->
+    <!--Help-->
+    <!--Hints-->
+    <!--Image-->
+    <!--Rules-->
+
+    <!--NavBar-->
+    <section class="navigation">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header" id="navbar">
+                        <a class="navbar-brand" href="#">Aussie Wilderness</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Stats</a></li>
+                        <li><a href="#">Profile</a></li>
+
+                        <!--Needs a hover dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+ <!--Title block-->
+<section class = "title">
+    <div class = "container">
+        <div class = "row" id = "Heading">
+            <div class = "col-md-4"></div>
+            <div class = "col-md-5">
+                <h1 style = "color: white;">Animle</h1>
+            </div>
+            <div class = "col-md-3"></div>
+        </div>
+    </div>
+</section>
+
+<section class = "gamebox">
+    <div class = "container">
+        <div class = "row" id="game_row">
+            <div class = "col-md-1"></div>
+            <div class = "col-md-6" id = "gameInputs">
+              <br>
+                <form  method="post" id="wordInputs"> 
+                  <br>
+                  <div class="autocomplete">
+                  <input id="guessWord" type="text" placeholder="Animal Guess...">
+                  </div>
+                  <br>
+                  <input id = "submitWord" type = "button" value = "Submit">
+                  <br>
+                </form>	
+                <script>
+                    var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"]
+                    autocomplete(document.getElementById("guessWord"), animals);
+                </script>	
+                <br>
+                <p id="finalMessage" style="color:white">xx</p>
+                <br>
+            </div>
+
+            <!--Right column-->
+            <div class = "col-md-4" id = "game_hints">
+                <h3>Need a hint?</h3><br>
+                <p id="hint1">Hint 1:</p>
+                <p id="hint2">Hint 2:</p>
+                <p id="hint3">Hint 3:</p>
+                <p id="hint4">Hint 4:</p>
+                <p id="hint5">Hint 5:</p>
+                <p id="hint6">Hint 6:</p>
+                <p id="hint7">Hint 7:</p>
+                <p id="hint8">Hint 8:</p>
+                <p id="animalImage">image of animal here</p>
+            </div>
+            <div class = "col-md-1"></div>
+        </div> 
+    </div> 
+    <!-- change -->
+        
+            <!--Submit-->
+            <!--Help-->
+        <!--Hints-->
+        <!--Image-->        
+        </div>
+        <div class = "col-md-2"></div>
+    </div>
+    <br>
+    <br>
+</section>
+
+<section class = "Social Footer">
+    <div class = "container">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+            <footer>
+                <div class="social">
+                  <!--
+                    <a href="#"><img src="instagram-icon.png"></a>
+                    <a href="#"><img src="facebook-icon.png"></a>
+                    <a href="#"><img src="twitter-icon.png"></a> -->
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-1"></div>
+    </section>
+
+<script src="homePage.js"></script>
+
+</html>
