@@ -2,7 +2,7 @@
 <!-- The form.hidden_tag() template argument generates a hidden field that includes a token that is
 protects form against CSRF attacks. All you need for this is to include this hidden field 
 and have the SECRET_KEY variable defined in the Flask config, Flask-WTF does the rest for you. -->
-{% block content %}
+{% block app_content %}
     <h1>Sign In</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
