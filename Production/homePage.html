@@ -14,71 +14,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <style>
-        .autocomplete {
-            position: relative;
-            display: inline-block;
-        }
-
-        .autocomplete-items {
-            position: absolute;
-            z-index: 10;
-            top: 100%;
-            left: 0;
-            right: 0;
-            border: 1px solid #e0e0e0;
-
-        }
-
-        .autocomplete-items div {
-            padding: 10px;
-            cursor: pointer;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .autocomplete-items div:hover {
-            background-color: #ded9d9;
-        }
-    </style>
-
-<script>
-    function autocomplete(inp, arr) {
-        inp.addEventListener("input", function (e) {
-            var a, b, i, val = this.value;
-            closeAllLists();
-            if (!val) { return False; }
-            /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("div")
-            a.setAttribute("id", this.id + "autocomplete-list")
-            a.setAttribute("class", "autocomplete-items")
-            /*append the DIV element as a child of the autocomplete container:*/
-            this.parentNode.appendChild(a)
-            for (i = 0; i < arr.length; i++) {
-                /*find items that make text field and create div */
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    b = document.createElement("div")
-                    /*style choice - make the matching letters bold?:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    b.addEventListener("click", function (e) {
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
-                }
-            }
-        });
-        function closeAllLists() {
-            var toclose = document.getElementsByClassName("autocomplete-items");
-            for (var i = 0; i < toclose.length; i++) {
-                toclose[i].parentNode.removeChild(toclose[i]);
-            }
-        };
-    }
-    </script>
-
 </head>
 
 <body onload="loadFunction()">
@@ -122,6 +57,12 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
+                </ul>
+            </div>
+        </nav>  
+    </div>
+    <div class="col-md-1"></div>
+</section>
 
  <!--Title block-->
 <section class = "title">

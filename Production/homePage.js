@@ -66,3 +66,38 @@ function rowInputer() {
 
 submitButton = document.getElementById('submitWord');
 submitButton.addEventListener('click', rowInputer);
+
+function autocomplete(inp, arr) {
+  inp.addEventListener("input", function (e) {
+      var a, b, i, val = this.value;
+      closeAllLists();
+      if (!val) { return False; }
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("div")
+      a.setAttribute("id", this.id + "autocomplete-list")
+      a.setAttribute("class", "autocomplete-items")
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a)
+      for (i = 0; i < arr.length; i++) {
+          /*find items that make text field and create div */
+          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+              b = document.createElement("div")
+              /*style choice - make the matching letters bold?:*/
+              b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+              b.innerHTML += arr[i].substr(val.length);
+              b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+              b.addEventListener("click", function (e) {
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  closeAllLists();
+              });
+              a.appendChild(b);
+          }
+      }
+  });
+  function closeAllLists() {
+      var toclose = document.getElementsByClassName("autocomplete-items");
+      for (var i = 0; i < toclose.length; i++) {
+          toclose[i].parentNode.removeChild(toclose[i]);
+      }
+  };
+}
