@@ -56,3 +56,29 @@ body {
     border: 2px solid white;
     border-collapse: collapse;
   }
+
+  .autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #e0e0e0;
+
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.autocomplete-items div:hover {
+    background-color: #ded9d9;
+}
