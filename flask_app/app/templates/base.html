@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <link rel= "javascript" type= "text/javascript" href= "{{ url_for('static', filename='homePage.js') }}">
+    <script type= "text/javascript" href= "{{ url_for('static', filename='homePage.js') }}"></script>
     {{super()}}
 {% endblock %}
 
@@ -54,27 +54,22 @@
         </div>
         <div class="col-md-1"></div>
     </section>
-
+<!-- nav bar end -->
     {% endblock %}
+
+    {% block content %}
 
     <section class = "title">
         <div class = "container">
             <div class = "row" id = "Heading">
                 <div class = "col-md-4"></div>
-                <div class = "col-md-5">
+                <div class = "col-md-4">
                     <h1 style = "color: white;">Animle</h1>
                 </div>
-                <div class = "col-md-3"></div>
+                <div class = "col-md-4"></div>
             </div>
         </div>
     </section>
 
-    {% block content %}
     {% block app_content %}{% endblock %}
     {% endblock %}
-
-    <script type="text/javascript">
-        loadFunction();
-    </script> 
-
-<!-- doc end -->
