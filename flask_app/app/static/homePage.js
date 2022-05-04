@@ -22,11 +22,17 @@ function loadFunction() {
     table1.setAttribute("id", "guessTable");
     form1 = document.getElementById("wordInputs");
     document.getElementById('gameInputs').insertBefore(table1, form1);
+
+    //links html to row inputer function
+    submitButton = document.getElementById('submitWord');
+    submitButton.addEventListener('click', rowInputer);
+
+    //links html to auto complete function
+    //BROKEN
+    autocomplete(document.getElementById("guessWord"), animals);
 }
 
-
 let guessNum = 0;
-
 
 // doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
 function rowInputer() {
@@ -64,8 +70,6 @@ function rowInputer() {
 
 }
 
-submitButton = document.getElementById('submitWord');
-submitButton.addEventListener('click', rowInputer);
 
 function autocomplete(inp, arr) {
     inp.addEventListener("input", function (e) {
@@ -101,3 +105,5 @@ function autocomplete(inp, arr) {
         }
     };
 }
+
+var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];

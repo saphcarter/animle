@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block my_body %}
+<body onload="loadFunction()">
+{% endblock %}
+
 {% block app_content %}
 
 <section class = "gamebox">
@@ -8,7 +12,7 @@
             <div class = "col-md-1"></div>
             <div class = "col-md-6" id = "gameInputs">
               <br>
-                <form  method="post" id="wordInputs"> 
+                <form  method="post" id="wordInputs" autocomplete="off"> 
                   <br>
                   <div class="autocomplete">
                   <input id="guessWord" type="text" placeholder="Animal Guess...">
@@ -17,10 +21,6 @@
                   <input id = "submitWord" type = "button" value = "Submit">
                   <br>
                 </form>	
-                <script>
-                    var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"]
-                    autocomplete(document.getElementById("guessWord"), animals);
-                </script>	
                 <br>
                 <p id="finalMessage" style="color:white">xx</p>
                 <br>
@@ -70,34 +70,5 @@
         </div>
     <div class="col-md-1"></div>
 </section>
-
-{% block scripts %}
-<script>
-    $(function() {
-    const table1 = document.createElement('table');
-    for (i = 0; i < 6; i++) {
-        const tableRow = document.createElement('tr');
-        const tableData1 = document.createElement('td');
-        tableData1.innerHTML = 'guess';
-        tableData1.setAttribute('width', "85%");
-        tableData1.setAttribute('id', "row" + i + "col0");
-        tableRow.appendChild(tableData1);
-
-        const tableData2 = document.createElement('td');
-        tableData2.innerHTML = '+/-';
-        tableData2.setAttribute('width', "15%");
-        tableData2.setAttribute('id', "row" + i + "col1");
-        tableRow.appendChild(tableData2);
-
-        table1.appendChild(tableRow);
-    }
-
-    table1.setAttribute("id", "guessTable");
-    form1 = document.getElementById("wordInputs");
-    document.getElementById('gameInputs').insertBefore(table1, form1);
-    });
-</script>
-{{super()}}
-{% endblock%}
 
 {% endblock %}
