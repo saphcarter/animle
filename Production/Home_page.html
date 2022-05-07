@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Home" content="width=device-width, initial-scale=1, user-scalable=yes">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="home.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid #e0e0e0;
+
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #ded9d9;
+        }
+    </style>
+
+<script>
+    function autocomplete(inp, arr) {
+        inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            closeAllLists();
+            if (!val) { return False; }
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("div")
+            a.setAttribute("id", this.id + "autocomplete-list")
+            a.setAttribute("class", "autocomplete-items")
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a)
+            for (i = 0; i < arr.length; i++) {
+                /*find items that make text field and create div */
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    b = document.createElement("div")
+                    /*style choice - make the matching letters bold?:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    b.addEventListener("click", function (e) {
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        function closeAllLists() {
+            var toclose = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < toclose.length; i++) {
+                toclose[i].parentNode.removeChild(toclose[i]);
+            }
+        };
+    }
+    </script>
+
+</head>
+
+<body onload="javaToExecuteOnLoad()">
+    <!--NavBar-->
+    <!--Title block-->
+    <!--Game Block-->
+    <!--Guess Area/Cube inputs-->
+    <!--Inputs-->
+    <!--Submit-->
+    <!--Help-->
+    <!--Hints-->
+    <!--Image-->
+    <!--Rules-->
+
+    <!--NavBar-->
+    <section class="navigation">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header" id="navbar">
+                        <a class="navbar-brand" href="#">Aussie Wilderness</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Stats</a></li>
+                        <li><a href="#">Profile</a></li>
+
+                        <!--Needs a hover dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-1"></div>
+    </section>
+
+    <!--Title block-->
+    <section class="title">
+        <div class="container">
+            <div class="row" id="Heading">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <h1 style="color: white;">What animal am I?</h1>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gamebox">
+        <div class="container">
+            <div class="row" id="game_row">
+                <div class="col-md-1"></div>
+                <div class="col-md-6" id="game_inputs">
+                    <!--Form that auto suggests animals. ??? onsubmit or action (post???)-->
+                    <form name="Game Inputs" autocomplete="off" action="/action_page.php">
+                        <fieldset>
+                            <legend>Animaldle guesser</legend>
+                            <div class="autocomplete">
+                                <input id="userInput" type="text" name="guess" placeholder="Animal...">
+                            </div>
+                            <input type="submit">
+                    </form>
+                    <script>
+                        var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"]
+                        autocomplete(document.getElementById("userInput"), animals);
+                    </script>
+                    </fieldset>
+                    <br>
+                    <br>
+                    <p id="WordleMessage">No Message Printed</p>
+                    <br>
+                </div>
+                <!--Right column-->
+                <div class="col-md-4" id="game_hints">
+                    <h3>Need a hint?</h3>
+                    <button id="hint1">hint 1</button>
+                    <br>
+                    <br>
+                    <button id="hint2">hint 2</button>
+                    <br>
+                    <br>
+                    <button id="hint3">hint 3</button>
+                    <br>
+                    <br>
+                    <img src="question.png" width="20%">
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+
+        <!--Submit-->
+        <!--Help-->
+        <!--Hints-->
+        <!--Image-->
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+        <br>
+        <br>
+    </section>
+
+    <section class="Social Footer">
+        <div class="container">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <footer>
+                    <div class="social">
+                        <a href="#"><img src="instagram-icon.png"></a>
+                        <a href="#"><img src="facebook-icon.png"></a>
+                        <a href="#"><img src="twitter-icon.png"></a>
+                    </div>
+                </footer>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </section>
+</body>
+
+</html>
