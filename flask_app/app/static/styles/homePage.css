@@ -82,3 +82,7 @@ body {
 .autocomplete-items div:hover {
     background-color: #ded9d9;
 }
+
+.notes {
+  color: wheat;
+}
