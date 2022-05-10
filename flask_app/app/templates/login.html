@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+<!-- The form.hidden_tag() template argument generates a hidden field that includes a token that is
+protects form against CSRF attacks. All you need for this is to include this hidden field 
+and have the SECRET_KEY variable defined in the Flask config, Flask-WTF does the rest for you. -->
+{% block app_content %}
+<!-- <div class="container">
+    <h1>Sign In</h1>
+    <form class="form-horizontal" action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="username">Username:</label>
+                <div class="col-sm-10"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password">Password:</label>
+                <div class="col-sm-10"></div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+           <br>
+    </form>
+</div> -->
+
+<div class="container">
+    <h1>Sign In</h1>
+    <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">          
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+        </div>
+      </div>
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+<!-- very simple login page -->
+<!-- 
+
+    <h2>Horizontal form</h2>
+    <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">          
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+        </div>
+      </div>
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+<section class = "Social Footer">
+    <div class = "container">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+            <footer>
+                <div class="social">
+                  
+                    <a href="#"><img src="instagram-icon.png"></a>
+                    <a href="#"><img src="facebook-icon.png"></a>
+                    <a href="#"><img src="twitter-icon.png"></a> -->
+                <!-- </div>
+            </nav>
+        </div>
+        <div class="col-md-1"></div>
+    </section> --> 
