@@ -14,6 +14,10 @@ body {
   .nav {
     border: 2px white;
   }
+
+  /* .form-horizontal {
+	  background-color: rgb(37, 62, 1);
+  } */
   
   #Heading {
     text-align: center;
