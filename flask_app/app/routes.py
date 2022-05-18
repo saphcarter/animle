@@ -1,11 +1,15 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm
+from app.models import Animals
+from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/gamepage')
-def gamepage(): 
+def gamepage():
+    animals = Animals()
     return render_template('gamepage.html', title='Home')
+    
 
 @app.route('/login', methods=['GET','POST'])
 def login():

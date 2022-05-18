@@ -31,21 +31,14 @@ function loadFunction() {
     //BROKEN
     autocomplete(document.getElementById("guessWord"), animals);
 }
-var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
-//from models.py
-//import file into javascript
-//animals variable = animals class on models . name of animal
 
 let guessNum = 0;
 
 // doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
-    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
-    let target = "KOALA";
-    //call animal class from models.py and name of animal
-    //then for each hint query animal class for that animal 
-    //(e.g. sql select classifcation where name is Koala)
+    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
+    let target = animals[Math.floor(Math.random() * animals.length)];
 
 
     let currentInputId = "row" + guessNum + "col0";
@@ -57,7 +50,7 @@ function rowInputer() {
 
     let formSection = document.getElementById("wordInputs");
     document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
-
+    
     if (inputWord == target) {
         document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
         document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
@@ -121,4 +114,4 @@ function autocomplete(inp, arr) {
     };
 }
 
-
+var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
