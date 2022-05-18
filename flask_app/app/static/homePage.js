@@ -11,7 +11,7 @@ function loadFunction() {
         tableRow.appendChild(tableData1);
 
         const tableData2 = document.createElement('td');
-        tableData2.innerHTML = '+/-';
+        tableData2.innerHTML = '?';
         tableData2.setAttribute('width', "15%");
         tableData2.setAttribute('id', "row" + i + "col1");
         tableRow.appendChild(tableData2);
@@ -45,28 +45,36 @@ function rowInputer() {
     let tableInput = document.getElementById(currentInputId);
     tableInput.innerHTML = inputWord;
 
+    let markingInputId = "row" + guessNum + "col1";
+    let markingInput = document.getElementById(markingInputId);
+
+    let formSection = document.getElementById("wordInputs");
+    document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
+    
     if (inputWord == target) {
         document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
         document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
         document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
         // reveals image of animal
-        // remove/hide input & submit elements of page
+        formSection.style.display = "none";
+        markingInput.innerHTML = "&#10003";
     }
     else {
-        document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'red';
+        document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
+        document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
+        markingInput.innerHTML = "&#10060";
     }
 
     guessNum += 1;
 
     if (guessNum == 6) {
         document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
-        // remove/hide input & submit elements of page
+        formSection.style.display = "none";
     }
-    else {
-        document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
+    else if (inputWord != target){
+        document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
     }
-    console.log(tableInput);
-    console.log(inputWord);
+    
 
 }
 
