@@ -56,42 +56,51 @@ function rowInputer() {
     //(e.g. sql select classifcation where name is Koala)
 
 
-    let currentInputId = "row" + guessNum + "col0";
-    let tableInput = document.getElementById(currentInputId);
-    tableInput.innerHTML = inputWord;
-
-    let markingInputId = "row" + guessNum + "col1";
-    let markingInput = document.getElementById(markingInputId);
-
-    let formSection = document.getElementById("wordInputs");
-    document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
-    document.getElementById("wordInputs").elements["guessWord"].value = '';
-
-    if (inputWord == target) {
-        document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
-        document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
-        document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
-        // reveals image of animal
-        formSection.style.display = "none";
-        markingInput.innerHTML = "&#10003";
-    }
-    else {
-        document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
-        document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
-        markingInput.innerHTML = "&#10060";
-    }
-
-    guessNum += 1;
-
-    if (guessNum == 6) {
-        document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
-        formSection.style.display = "none";
-    }
-    else if (inputWord != target){
-        document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
-    }
     
 
+    if (inputWord.length == 0) {
+        alert("You need to guess an Animal!!");
+    }
+    // else if animal guess not in database
+    // alert "Input is not Australian animal in this game"
+    else {
+        let currentInputId = "row" + guessNum + "col0";
+        let tableInput = document.getElementById(currentInputId);
+        tableInput.innerHTML = inputWord;
+
+        let markingInputId = "row" + guessNum + "col1";
+        let markingInput = document.getElementById(markingInputId);
+
+        let formSection = document.getElementById("wordInputs");
+        document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
+        document.getElementById("wordInputs").elements["guessWord"].value = '';
+
+        if (inputWord == target) {
+            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
+            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
+            document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
+            // reveals image of animal
+            formSection.style.display = "none";
+            markingInput.innerHTML = "&#10003";
+        }
+        else {
+            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
+            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
+            markingInput.innerHTML = "&#10060";
+        }
+
+        guessNum += 1;
+
+        if (guessNum == 6) {
+            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
+            formSection.style.display = "none";
+        }
+        else if (inputWord != target){
+            document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
+        }
+    
+
+    }
 }
 
 
