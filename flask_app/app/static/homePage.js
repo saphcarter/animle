@@ -5,7 +5,6 @@ function loadFunction() {
         const tableRow = document.createElement('tr');
 
         const tableData1 = document.createElement('td');
-        tableData1.innerHTML = 'guess';
         tableData1.setAttribute('width', "85%");
         tableData1.setAttribute('id', "row" + i + "col0");
         tableRow.appendChild(tableData1);
@@ -36,23 +35,19 @@ function loadFunction() {
     
 
     //links html to auto complete function
-    //BROKEN
     autocomplete(document.getElementById("guessWord"), animals);
 }
 
 let guessNum = 0;
 var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
-let target = animals[Math.floor(Math.random() * animals.length)];
-// doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
+let target = animals[Math.floor(Math.random() * animals.length)].toUpperCase();
+
+
+//NOTE need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
-    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
-    console.log(target)
+    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
     
-    
-
-    
-
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
     }
@@ -93,8 +88,6 @@ function rowInputer() {
         else if (inputWord != target){
             document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
         }
-    
-
     }
 }
 

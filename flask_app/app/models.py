@@ -1,7 +1,11 @@
 from datetime import datetime
 from xmlrpc.client import Boolean
-from app import db
+from app import db, login
 from sqlalchemy import VARCHAR, create_engine
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+
+
 
 #TODO: For some reason 'from app.models import User' is resulting in an ImportError. Commented out temporarily to enable other work to be done.
 
@@ -32,7 +36,7 @@ class Attempts(db.Model):
         return '<Post {}>'.format(self.number)
 
 
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
@@ -42,6 +46,15 @@ class Users(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+@login.user_loader
+def load_user(id):
+    return Users.query.get(int(id))
 
 #NOTE COMMENTED OUT AS DON'T NEED TO LOAD CSV INTO DB TWICE
 
