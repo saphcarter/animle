@@ -19,3 +19,8 @@ def login():
 @app.route('/stats')
 def stats(): 
     return render_template('stats.html', title='stats')
+
+
+@app.route('/instructions')
+def instructions(): 
+    return render_template('instructions.html', title='instructions')
