@@ -5,16 +5,15 @@ function loadFunction() {
         const tableRow = document.createElement('tr');
 
         const tableData1 = document.createElement('td');
+        tableData1.innerHTML = '_______________';
         tableData1.setAttribute('width', "85%");
         tableData1.setAttribute('id', "row" + i + "col0");
         tableRow.appendChild(tableData1);
 
         const tableData2 = document.createElement('td');
-        tableData2.innerHTML = '?';
         tableData2.setAttribute('width', "15%");
         tableData2.setAttribute('id', "row" + i + "col1");
         tableRow.appendChild(tableData2);
-
         table1.appendChild(tableRow);
     }
 
@@ -72,6 +71,15 @@ function rowInputer() {
             // reveals image of animal
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
+
+            for (let h=guessNum;h<6;h++) {
+                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**"
+                document.getElementById("row" + h + "col1").style.backgroundColor = 'green';
+                document.getElementById("row" + h + "col0").style.backgroundColor = 'green';
+                document.getElementById("row" + (h+1) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  "
+                document.getElementById("row" + (h+1) + "col1").innerHTML = "&#10003"
+
+            }
         }
         else {
             document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
@@ -81,7 +89,7 @@ function rowInputer() {
 
         guessNum += 1;
 
-        if (guessNum == 6) {
+        if ((guessNum == 6) && (inputWord != target)) {
             document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
             formSection.style.display = "none";
         }
