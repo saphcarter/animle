@@ -39,22 +39,17 @@ function loadFunction() {
     //BROKEN
     autocomplete(document.getElementById("guessWord"), animals);
 }
-var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
-//from models.py
-//import file into javascript
-//animals variable = animals class on models . name of animal
 
 let guessNum = 0;
-
+var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
+let target = animals[Math.floor(Math.random() * animals.length)];
 // doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
-    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
-    let target = "KOALA";
-    //call animal class from models.py and name of animal
-    //then for each hint query animal class for that animal 
-    //(e.g. sql select classifcation where name is Koala)
-
+    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
+    console.log(target)
+    
+    
 
     
 
