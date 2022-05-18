@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<div style = "color: white;">
-    <p>The instructions will be here</p>
-    <ol>
-        <li>rule 1</li>
-        <li>rule 2</li>
-        <li>rule 3</li>
-    </ol>
+<div class="col-md-2"></div>
+<div class="col-md-8" style = "color: white;">
+  <br>
+    <p>Below are the basic instructions on how to play Animle:</p>
+    <ul>
+        <li>The aim of the game is to guess the unknown Australian animal from basic hints.</li>
+        <li>You will begin with two hints, and after every incorrect guess, a new hint will be unlocked.</li>
+        <li>Different hints about the animals include:
+          <ul>
+            <li>Their classification (marsupial, mammal, reptile, etc.)</li>
+            <li>The number of legs the animal has (if any)</li>
+            <li>If the animal has a tail or not</li>
+            <li>If the animal has wings or not</li>
+            <li>If the animal has fins or flippers or not</li> 
+            <li>The rough size category of the animal</li>
+            <li>The climate they live in</li>
+            <li>Their endangered rating</li>
+          </ul>
+        </li>
+        <li>Users (like yourself) can login using the 'Login' button at the top of the screen.</li>
+        <li>Once logged in, stats from your recent attempts are available when clicking on the 'Stats' button at the top of the screen.</li>
+        <li>The game allows multiple attempts each day for different animals, and the animals are randomly chosen for each device.</li>
+    </ul>
 </div>
+<div class="col-md-2"></div>
 {% endblock %}
