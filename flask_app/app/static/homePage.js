@@ -26,6 +26,14 @@ function loadFunction() {
     //links html to row inputer function
     submitButton = document.getElementById('submitWord');
     submitButton.addEventListener('click', rowInputer);
+    guessWord = document.getElementById('guessWord');
+    guessWord.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          submitButton.click();
+        }
+    })
+    
 
     //links html to auto complete function
     //BROKEN
@@ -33,13 +41,15 @@ function loadFunction() {
 }
 
 let guessNum = 0;
-
+var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
+let target = animals[Math.floor(Math.random() * animals.length)];
 // doesnt seem to work just yet - ran out of time today - need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
     let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
-    let target = animals[Math.floor(Math.random() * animals.length)];
-
+    console.log(target)
+    
+    
 
     let currentInputId = "row" + guessNum + "col0";
     let tableInput = document.getElementById(currentInputId);
@@ -50,7 +60,8 @@ function rowInputer() {
 
     let formSection = document.getElementById("wordInputs");
     document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
-    
+    document.getElementById("wordInputs").elements["guessWord"].value = '';
+
     if (inputWord == target) {
         document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
         document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
@@ -114,4 +125,4 @@ function autocomplete(inp, arr) {
     };
 }
 
-var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
+
