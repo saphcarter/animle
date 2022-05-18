@@ -33,7 +33,7 @@ class Attempts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
-        return '<Post {}>'.format(self.number)
+        return ('<User {}>'.format(self.user_id) + '<Number {}>'.format(self.number))
 
 
 class Users(UserMixin, db.Model):

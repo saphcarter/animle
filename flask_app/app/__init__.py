@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 app = Flask(__name__)
-# app.config['SECRET_KEY'] = 'you-will-never-guess'
+app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 #Database configuration - currently set to an SQLite relative path
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -18,5 +18,6 @@ app.config.from_object(Config)
 bootstrap = Bootstrap(app)
 
 login = LoginManager(app)
+login.login_view = 'login'
 
 from app import routes, models
