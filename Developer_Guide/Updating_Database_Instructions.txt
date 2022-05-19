@@ -1,0 +1,30 @@
+This Document provides instructions to manually update the database using the terminal. These rights are reserved for developers only and not accessible to the end user.
+Follow the instructions below, replacing values in the curly braces {your_input_here} with your desired input for that parameter 
+  -- (Instructions are designed for a Windows Powershell user and may vary for other operating systems)--
+
+Navigating to the database:
+    1. Pull the animle github repository to your local machine
+    2. navigate to the 'flask_app' directory within the repository
+    3. execute "flask shell" to open the python editor with the flask environment configured
+    4. Check that the database is accessible with "Animal.query.all()"
+
+Adding an Animal
+    1. >>> animal = Animals(Name = "{Bull Ant}", Classification = "{Insect}", Legs = {6}, Tail = {False}, Wings = {False}, Flippers = {False},
+          Size = '{XS}', Climate = "{All}", Endangered = "{LC}", Image = "{}")
+    2. >>> db.session.add(animal)
+    3. >>> db.session.commit()
+    4. >>> for instance in db.session.query(Animal).order_by(Animal.id):
+       ...     print(instance.Name, instance.Classification)  ##Can include all attributes if desired##
+       ...
+       Numbat Marsupial
+       ... (list of items in database)
+       Bull Ant Insect
+       
+ Deleting an Animal:
+    1. >>> ant = db.session.query(Animal).filter_by(Name = "Bull Ant")
+    2. >>> db.session.drop(ant)
+    3. >>> db.session.commit()
+    4. >>> Animal.query.all()
+          [Numbat>, Woylie>, Southern Snapping Turtle>, Hawksbill Turtle>, Grey Nurse Shark>, Sawfish>, Mountain Pygmy Possum>, 
+          Regent Honey Eater>, Western Brown Snake>, Red Kangaroo>, Koala>, Rock Wallaby>, Wombat>, Wedge Tailed Eagle>, Pelican>, 
+          Funnel Web Spider>, Brush Tail Possum >, Echidna>]

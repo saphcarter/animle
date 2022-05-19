@@ -22,15 +22,15 @@
                   <br>
                 </form>	
                 <br>
-                <p id="finalMessage" style="color:white">xx</p>
+                <p id="finalMessage" style="color:white">You have 6 guesses remaining!</p>
                 <br>
             </div>
 
             <!--Right column-->
             <div class = "col-md-4" id = "game_hints">
                 <h3>Need a hint?</h3><br>
-                <p id="hint1">Hint 1:</p>
-                <p id="hint2">Hint 2:</p>
+                <p id="hint1">Hint 1:**hint from database**</p>
+                <p id="hint2">Hint 2:**hint from database**</p>
                 <p id="hint3">Hint 3:</p>
                 <p id="hint4">Hint 4:</p>
                 <p id="hint5">Hint 5:</p>
@@ -38,6 +38,8 @@
                 <p id="hint7">Hint 7:</p>
                 <p id="hint8">Hint 8:</p>
                 <p id="animalImage">image of animal here</p>
+                <p >Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
+                <p >Haven't logged in yet? <a href="{{ url_for('instructions') }}">Click here to login or register!</a></p>
             </div>
             <div class = "col-md-1"></div>
         </div> 
