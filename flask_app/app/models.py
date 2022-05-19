@@ -20,7 +20,7 @@ class Animals(db.Model):
     Size = db.Column(db.VARCHAR(2), nullable = False)
     Climate = db.Column(db.VARCHAR(50), nullable = False)
     Endangered = db.Column(db.VARCHAR(50), nullable = False)
-    Image = db.Column(db.String(120), default='default.jpg')             #TODO: Need to add to DB
+    Image = db.Column(db.String(120), default='')             #TODO: Need to add to DB
 
     def __repr__(self):     #how the object is printed if the 'Animal' object is printed
         return '{}>'.format(self.Name)        #print just the name
