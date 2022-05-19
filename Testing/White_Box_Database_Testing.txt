@@ -1,0 +1,39 @@
+White Box Testing:
+    1. Within the Flask Shell python interpretter check that the 'Animal' attribute returns a class within app.models
+    >>> Animal
+    <class 'app.models.Animals'>
+
+2. Query the database within the Flask python interpretter to check the names of the Animals in the database are as expected
+    >>> Animal.query.all()
+        [Numbat>, Woylie>, Southern Snapping Turtle>, Hawksbill Turtle>, Grey Nurse Shark>, Sawfish>, Mountain Pygmy Possum>, 
+        Regent Honey Eater>, Western Brown Snake>, Red Kangaroo>, Koala>, Rock Wallaby>, Wombat>, Wedge Tailed Eagle>, Pelican>, 
+        Funnel Web Spider>, Brush Tail Possum >, Echidna>]
+
+3. Update an animal Attribute in the database
+    >>>
+
+4. Insert a new animal into the database and checking that the database has updated
+    >>> animal = Animals(Name = "Bull Ant", Classification = "Insect", Legs = 6, Tail = False, Wings = False, Flippers = False,
+        Size = 'XS', Climate = "All", Endangered = "LC", Image = "")
+    >>> db.session.add(animal)
+    >>> db.session.commit()
+    >>> for instance in db.session.query(Animal).order_by(Animal.id):
+       ...     print(instance.Name, instance.Classification)  ##Can include all attributes if desired##
+       ...
+         Numbat Marsupial
+         ... (list of items in database)
+         Bull Ant Insect
+
+5. Insert a duplicate animal into the database 
+    >>> animal = Animals(Name = "Bull Ant", Classification = "Insect", Legs = 6, Tail = False, Wings = False, Flippers = False,
+        Size = 'XS', Climate = "NONE", Endangered = "LC", Image = "")
+    >>> db.session.add(animal)
+    >>> db.session.commit()
+            ###Expecting a UNIQUE constraint to fail on animals.Name
+    >>> for instance in db.session.query(Animal).order_by(Animal.id):
+       ...     print(instance.Name, instance.Classification)  ##Can include all attributes if desired##
+       ...
+         Numbat Marsupial
+         ... (list of items in database)
+         Bull Ant Insect
+            ###Only a single instance of 'Bull Ant' exists in the database.
