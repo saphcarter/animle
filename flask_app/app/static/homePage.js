@@ -38,7 +38,10 @@ function loadFunction() {
 }
 
 let guessNum = 0;
-var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
+var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
+"Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
+"Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
+"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 let target = animals[Math.floor(Math.random() * animals.length)].toUpperCase();
 
 
