@@ -40,9 +40,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ url_for('stats') }}">Stats</a></li>
                         {% if current_user.is_anonymous %}
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('login') }}" id="userStatus">Login</a></li>
                          {% else %}
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for('logout') }}" id="userStatus">Logout</a></li>
                         {% endif %}
                         
                         <li><a href="{{ url_for('instructions') }}">Instructions</a></li>                        
