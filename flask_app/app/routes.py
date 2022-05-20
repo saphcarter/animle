@@ -17,10 +17,6 @@ def gamepage():
 def names(): 
     animal_names = Animals.query.with_entities(Animals.Name)
     return jsonify(animal_names)
-
-    
-
-
     
 
 @app.route('/login', methods=['GET', 'POST'])
