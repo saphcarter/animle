@@ -2,8 +2,13 @@
 
 {% block my_body %}
 <body onload="loadFunction()">
-{% endblock %}
+ 
 
+{% endblock %}
+{% for name in names %}
+var animal_names = {{name.Name}}
+{% endfor %}
+module.exports = {animal_names};
 {% block app_content %}
 
 <section class = "gamebox">

@@ -1,4 +1,6 @@
 // Creates table 6 rows x 2 columns
+const {animal_names} = require('./gamepage.html');
+
 function loadFunction() {
     const table1 = document.createElement('table');
     for (i = 0; i < 6; i++) {
@@ -34,15 +36,17 @@ function loadFunction() {
     
 
     //links html to auto complete function
-  //  autocomplete(document.getElementById("guessWord"), animals);
+    autocomplete(document.getElementById("guessWord"), animals);
 }
 
 let guessNum = 0;
-var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
+/*var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
 "Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
-"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
-let target = animals[Math.floor(Math.random() * animals.length)].toUpperCase();
+"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"]*/
+var animals = document.getElementById("auto")
+let target = {animal_names};
+
 
 
 //NOTE need to write js to unlock clues as well
