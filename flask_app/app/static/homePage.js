@@ -34,7 +34,7 @@ function loadFunction() {
     
 
     //links html to auto complete function
-    autocomplete(document.getElementById("guessWord"), animals);
+  //  autocomplete(document.getElementById("guessWord"), animals);
 }
 
 let guessNum = 0;
