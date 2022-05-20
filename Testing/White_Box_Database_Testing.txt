@@ -1,9 +1,12 @@
 White Box Testing:
     1. Within the Flask Shell python interpretter check that the 'Animal' attribute returns a class within app.models
-    >>> Animal
-    <class 'app.models.Animals'>
+		/flask_app$ flask shell
+		Instance: /flask_app/instance
+		>>>
+		>>> Animal
+		<class 'app.models.Animals'>
 
-2. Query the database within the Flask python interpretter to check the names of the Animals in the database are as expected
+2. Query the database within the Flask Shell python interpretter to check the names of the Animals in the database are as expected
     >>> Animal.query.all()
         [Numbat>, Woylie>, Southern Snapping Turtle>, Hawksbill Turtle>, Grey Nurse Shark>, Sawfish>, Mountain Pygmy Possum>, 
         Regent Honey Eater>, Western Brown Snake>, Red Kangaroo>, Koala>, Rock Wallaby>, Wombat>, Wedge Tailed Eagle>, Pelican>, 
