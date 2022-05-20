@@ -6,9 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-
-#TODO: For some reason 'from app.models import User' is resulting in an ImportError. Commented out temporarily to enable other work to be done.
-
 class Animals(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     Name = db.Column(db.VARCHAR(50), unique=True, nullable = False)
