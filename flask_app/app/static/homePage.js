@@ -37,16 +37,23 @@ function loadFunction() {
 
     //links html to auto complete function
     autocomplete(document.getElementById("guessWord"), animals);
+    console.log(Animal.query.all())
+}
 
 let guessNum = 0;
 /*var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
 "Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"]*/
 var animals = document.getElementById("auto")
 let target = {animal_names};
 
+=======
+"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
+let target = animals[Math.floor(Math.random() * animals.length)];
+>>>>>>> d9d96a06fefa4346ebb706d31fb327ba4492d85b
 
 
 //NOTE need to write js to unlock clues as well
