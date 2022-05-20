@@ -13,14 +13,6 @@ def gamepage():
     names = Animals.query.all()
     return render_template('gamepage.html', title='Home',names=names)
 
-<<<<<<< HEAD
-=======
-@app.route('/answers')
-def names(): 
-    animal_names = Animals.query.with_entities(Animals.Name)
-    return jsonify(animal_names)
-    
->>>>>>> d9d96a06fefa4346ebb706d31fb327ba4492d85b
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
