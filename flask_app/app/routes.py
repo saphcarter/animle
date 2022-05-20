@@ -1,15 +1,26 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
 from app.forms import LoginForm, RegistrationForm
 from app.models import Animals, Users
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 
+
 @app.route('/')
 @app.route('/gamepage')
 def gamepage():
-    animals = Animals()
+    animal_names = Animals.query.with_entities(Animals.Name)
+    
     return render_template('gamepage.html', title='Home')
+
+@app.route('/answers')
+def names(): 
+    animal_names = Animals.query.with_entities(Animals.Name)
+    return jsonify(animal_names)
+
+    
+
+
     
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -32,7 +43,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('gamepage'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = Users(username=form.username.data, email=form.email.data)
