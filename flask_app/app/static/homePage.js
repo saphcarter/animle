@@ -75,12 +75,12 @@ function rowInputer() {
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
 
-            for (let h=guessNum;h<6;h++) {
-                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**"
-                document.getElementById("row" + h + "col1").style.backgroundColor = 'green';
-                document.getElementById("row" + h + "col0").style.backgroundColor = 'green';
-                document.getElementById("row" + (h+1) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  "
-                document.getElementById("row" + (h+1) + "col1").innerHTML = "&#10003"
+            for (let h=guessNum+1;h<6;h++) {
+                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**";
+                document.getElementById("row" + (h) + "col1").style.backgroundColor = 'green';
+                document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
+                document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
+                document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
 
             }
         }
@@ -93,12 +93,13 @@ function rowInputer() {
         guessNum += 1;
 
         if ((guessNum == 6) && (inputWord != target)) {
-            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
+            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses, the animal was: " + target;
             formSection.style.display = "none";
         }
         else if (inputWord != target){
-            document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
+            document.getElementById("hint" + (guessNum + 3)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
         }
+        //console.log(target);
     }
 }
 
