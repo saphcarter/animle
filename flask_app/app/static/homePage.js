@@ -47,6 +47,11 @@ var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle
 "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 //var animals = document.getElementById("auto")
 //let target = {animal_names};
+var animals = document.getElementById("auto")
+//let target = {animal_names};
+
+
+// "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 let target = animals[Math.floor(Math.random() * animals.length)];
 
 

@@ -4,12 +4,15 @@ from app import app, db
 from app.models import Animals, Users, Attempts
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from config import basedir
 
 class SystemTest(unittest.TestCase):
     driver = None
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        path = "r`/mnt/c/Users/sapph/AppData/Roaming/Microsoft/Windows/Start Menu" +\
+             "/Programs/Python 3.10/selenium-2.53.1/py/selenium/webdriver"
+        self.driver = webdriver.Firefox(path)
 
         if not self.driver:
             self.skipTest("Web browser not available")
