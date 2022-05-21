@@ -3,7 +3,7 @@ import unittest, os
 from app import app, db
 from app.models import Animals, Users, Attempts
 
-class UserModelCase(unittest.TestCase):
+class ModelsTest(unittest.TestCase):
 	#creates a test database that is not the real database
     def setUp(self):
         basedir = os.path.abspath(os.path.dirname(__file__))
@@ -47,6 +47,31 @@ class UserModelCase(unittest.TestCase):
         login = self.app.get('/',follow_redirects=True)
         self.assertIn(login.data, self.app.get('/gamepage').data)
 
+    def register(self, username, email, password, password2):
+        return self.app.post('/register', data=dict(
+            username=username,
+            email=email,
+            password=password,
+            password2=password2
+        ), follow_redirects=True)
+
+    def test_registration(self):
+        response = self.register('iexist', 'iexist@example.com','pwd','pwd')
+        self.assertIn(b'Congratulations, you are now a registered user!', response.data)
+
+    def test_register_non_unique_user(self):
+        u1 = Users(username="iexist", email='iexist@example.com')
+        db.session.add(u1)
+        db.session.commit()
+        register = self.register('iexist', 'different@example.com','pwd','pwd')
+        self.assertIn(b'Please use a different username.', register.data)
+
+    def test_register_non_unique_email(self):
+        u1 = Users(username="iexist", email='iexist@example.com')
+        db.session.add(u1)
+        db.session.commit()
+        register = self.register('iwanttoexist', 'iexist@example.com','pwd','pwd')
+        self.assertIn(b'Please use a different email address.', register.data)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

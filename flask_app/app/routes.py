@@ -6,12 +6,12 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 
 
+
 @app.route('/')
 @app.route('/gamepage')
 def gamepage():
-    animal_names = Animals.query.with_entities(Animals.Name)
-    
-    return render_template('gamepage.html', title='Home')
+    names = Animals.query.all()
+    return render_template('gamepage.html', title='Home',names=names)
 
 @app.route('/answers')
 def names(): 
