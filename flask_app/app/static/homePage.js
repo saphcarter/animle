@@ -35,7 +35,7 @@ function loadFunction() {
 
     //links html to auto complete function
     autocomplete(document.getElementById("guessWord"), animals);
-    console.log(Animal.query.all())
+   //console.log(Animal.query.all())
 }
 
 let guessNum = 0;
@@ -126,7 +126,10 @@ function autocomplete(inp, arr) {
                     b = document.createElement("div")
                     b.innerHTML = arr[i];
                     b.addEventListener("click", function (e) {
-                        inp.value = this.getElementsByTagName("input")[0].value;
+                        //inp.value = this.getElementsByTagName("input")[0].value;
+                        //inp.value = b.innerHTML;
+                        //problem atm is that no matter what animal you click, the bottom one in the autocomplete field is populated as input
+                        //console.log(b.innerHTML)
                         closeAllLists();
                     });
                     a.appendChild(b);
