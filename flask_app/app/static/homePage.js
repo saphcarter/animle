@@ -1,5 +1,5 @@
 // Creates table 6 rows x 2 columns
-const {animal_names} = require('./gamepage.html');
+//const {animal_names} = require('./gamepage.html');
 
 function loadFunction() {
     const table1 = document.createElement('table');
@@ -41,14 +41,14 @@ function loadFunction() {
 }
 
 let guessNum = 0;
-/*var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
+var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
 "Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
-<<<<<<< HEAD
-<<<<<<< HEAD
-"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"]*/
+"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
+//var animals = document.getElementById("auto")
+//let target = {animal_names};
 var animals = document.getElementById("auto")
-let target = {animal_names};
+//let target = {animal_names};
 
 
 // "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
@@ -110,7 +110,7 @@ function rowInputer() {
         else if (inputWord.toUpperCase() != target.toUpperCase()){
             document.getElementById("hint" + (guessNum + 3)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
         }
-        //console.log(target);
+        console.log(target);
     }
 }
 
@@ -134,11 +134,9 @@ function autocomplete(inp, arr) {
                     //if any of the split by spaces of the arr[i].substr(0,..)...
                     b = document.createElement("div")
                     b.innerHTML = arr[i];
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                     b.addEventListener("click", function (e) {
-                        //inp.value = this.getElementsByTagName("input")[0].value;
-                        //inp.value = b.innerHTML;
-                        //problem atm is that no matter what animal you click, the bottom one in the autocomplete field is populated as input
-                        //console.log(b.innerHTML)
+                        inp.value = this.getElementsByTagName("input")[0].value;
                         closeAllLists();
                     });
                     a.appendChild(b);
