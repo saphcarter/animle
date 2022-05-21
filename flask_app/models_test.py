@@ -2,11 +2,12 @@ from datetime import datetime, timedelta
 import unittest, os
 from app import app, db
 from app.models import Animals, Users, Attempts
+from config import basedir
 
 class ModelsTest(unittest.TestCase):
 	#creates a test database that is not the real database
     def setUp(self):
-        basedir = os.path.abspath(os.path.dirname(__file__))
+        # basedir = os.path.abspath(os.path.dirname(__file__))
         app.config['SQLALCHEMY_DATABASE_URI'] =\
             'sqlite:///' + os.path.join(basedir, 'test.db')
         app.config['TESTING'] = True

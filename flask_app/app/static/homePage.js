@@ -50,13 +50,9 @@ let guessNum = 0;
 var animals = document.getElementById("auto")
 let target = {animal_names};
 
-=======
-"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
+
+// "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 let target = animals[Math.floor(Math.random() * animals.length)];
-<<<<<<< HEAD
->>>>>>> d9d96a06fefa4346ebb706d31fb327ba4492d85b
-=======
->>>>>>> d9d96a06fefa4346ebb706d31fb327ba4492d85b
 
 
 //NOTE need to write js to unlock clues as well
