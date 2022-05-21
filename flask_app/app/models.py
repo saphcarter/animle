@@ -30,7 +30,7 @@ class Attempts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
-        return ('<User {}>'.format(self.user_id) + '<Number {}>'.format(self.number))
+        return ('User {}:'.format(self.user_id) + '{}'.format(self.number))
 
 
 class Users(UserMixin, db.Model):
@@ -41,7 +41,7 @@ class Users(UserMixin, db.Model):
     attempts = db.relationship('Attempts', backref='author', lazy='dynamic')
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '{}'.format(self.username)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
