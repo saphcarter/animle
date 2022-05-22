@@ -45,6 +45,9 @@ var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle
 "Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
 "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
+
+//console.log(db.session.Animal.query.all())
+
 //var animals = document.getElementById("auto")
 //let target = {animal_names};
 

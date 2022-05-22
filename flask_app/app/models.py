@@ -1,6 +1,9 @@
 from datetime import datetime
+import io
 from xmlrpc.client import Boolean
 from app import db, login
+import pandas as pd
+import requests
 from sqlalchemy import VARCHAR, create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -17,10 +20,9 @@ class Animals(db.Model):
     Size = db.Column(db.VARCHAR(2), nullable = False)
     Climate = db.Column(db.VARCHAR(50), nullable = False)
     Endangered = db.Column(db.VARCHAR(50), nullable = False)
-    Image = db.Column(db.String(120), default='')             #TODO: Need to add to DB
 
     def __repr__(self):     #how the object is printed if the 'Animal' object is printed
-        return '{}>'.format(self.Name)        #print just the name
+        return '{}'.format(self.Name)        #print just the name
 
 
 class Attempts(db.Model):
@@ -70,7 +72,7 @@ def load_user(id):
 #     github_session.auth = (username, token)
         
 #     # Downloading the csv file from your GitHub
-#     url = "https://raw.githubusercontent.com/saphcarter/animle/SBX/flask_app/Animals_database.csv?token=GHSAT0AAAAAABUB5SDUGZONEPOUPHV35O4WYUEJGFA" # Make sure the url is the raw version of the file on GitHub
+#     url = "https://raw.githubusercontent.com/saphcarter/animle/SBX/flask_app/Animals_database.csv?token=GHSAT0AAAAAABUB5SDUK437I5BZFHYNHV3UYUJSQGA" # Make sure the url is the raw version of the file on GitHub
 #     download = github_session.get(url).content
 
 #     # Reading the downloaded content and making it a pandas dataframe
@@ -101,7 +103,7 @@ def load_user(id):
 #                             ,Size = animal[6]
 #                             ,Climate = animal[7]
 #                             ,Endangered = animal[8]
-#                             ,Image = animal[9])
+#                             )
 #             db.session.add(Animal_data)
 #             db.session.commit()
 #         except:
