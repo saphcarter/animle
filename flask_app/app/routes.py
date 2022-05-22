@@ -15,24 +15,27 @@ from flask_cors import CORS, cross_origin
 # date = int(dateTime.strftime("%Y%m%d"))
 # random.seed(date)
 # targetId = math.ceil(random.random()*38)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app) #cors stuff
+app.config['CORS_HEADERS'] = 'Content-Type' #yep more cors
 
 @app.route('/')
 @app.route('/gamepage')
-@cross_origin()
+@cross_origin() #add cors for this route. Add to other routes as required
 def gamepage():
     return render_template('gamepage.html', title='Home')
 
 @app.route('/answers')
 def names(): 
+    #create animal query to get name and id
+    #animal_names = Animals.query.with_entities(Animals.Name, Animals.id, Animals.Climates).all() i.e.
     animal_names = Animals.query.with_entities(Animals.Name, Animals.id).all()
-    print("these are animal names", animal_names)
+    #print("these are animal names", animal_names)
     data = []
     for animal in animal_names:
-        data.append(dict(animal))
+        data.append(dict(animal)) #This is to turn the return from alchemy into a python array to be jsonified
         
-    return jsonify(data)
+    return jsonify(data)#serialise to return as bytes
     
 
 @app.route('/login', methods=['GET', 'POST'])

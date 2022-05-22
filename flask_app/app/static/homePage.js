@@ -5,14 +5,15 @@ function loadFunction() {
     //get animals
     var animalPromise = GetAllAnimalName();
     let target = ""
-    let arrayAnimals = []
-    animalPromise.success(function (data){
-        //var animals = getPromiseData(animalPromise);
+    let arrayAnimalNames = []
+    //let arrayClimates = [] i.e. for climates
+    animalPromise.success(function (data){ //due to async all code using this data must be within the promise
             for(let i = 0; i < data.length; i++){
-                arrayAnimals.push(data[i]["Name"])
+                arrayAnimalNames.push(data[i]["Name"]) //create an array with all the names of animals
+                //arrayClimates.push(data[i]('Climates'))
             }
-            let index = Math.floor(Math.random() * arrayAnimals.length)
-            target = arrayAnimals[index];
+            let index = Math.floor(Math.random() * arrayAnimalNames.length) //Do on serverside??
+            target = arrayAnimalNames[index];//guess
             
 
         const table1 = document.createElement('table');
@@ -48,7 +49,7 @@ function loadFunction() {
         })
         
         //links html to auto complete function
-        autocomplete(document.getElementById("guessWord"), arrayAnimals);
+        autocomplete(document.getElementById("guessWord"), arrayAnimalNames);
     //console.log(Animal.query.all())
     })
 }
