@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block my_body %}
 <body onload="loadFunction()">
 {% endblock %}
@@ -12,29 +13,17 @@
             <div class = "col-md-1"></div>
             <div class = "col-md-6" id = "gameInputs">
               <br>
-                <form action="" method="post" novalidate, id="wordInputs" autocomplete="off">
-                    {{ form.hidden_tag() }}
+                <form  method="post" id="wordInputs"> 
                   <br>
                   <div class="autocomplete">
-                    {{ form.guessWord(size=24) }}<br>
+                  <input id="guessWord" type="text" placeholder="Animal Guess...">
                   </div>
                   <br>
-                  <p>{{ form.submit() }}</p>
+                  <input id = "submitWord" type = "button" value = "Submit">
                   <br>
-                </form>	
+                </form>		
                 <br>
-                <div style = "color:red;">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-    
-                    {% for message in messages %}
-                    {{ message }}
-                    {% endfor %}
-                
-                {% endif %}
-                {% endwith %}
-                </div>
-                <p id="finalMessage" style="color:white">You have 6 guesses remaining!</p>
+                <p id="finalMessage" style="color:white">Welcome, input above to start playing!!</p>
                 <br>
             </div>
 
@@ -51,15 +40,7 @@
                 <p id="hint8">Hint 8:</p>
                 <p id="animalImage">image of animal here</p>
                 <p >Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
-                {% if current_user.is_anonymous %}
-                    <p >Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
-                {% else %}
-                    <p> Hi, {{ current_user.username }}</p>
-                {% endif %}
-                {% for animle in database %}
-                    <div>{{ animle }}</div>
-                {% endfor %}
-                <div id="testingDB"></div>
+                <p >Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
             </div>
             <div class = "col-md-1"></div>
         </div> 

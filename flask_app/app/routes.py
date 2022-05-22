@@ -7,37 +7,16 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 import os, math, random, datetime, requests
 
-dateTime = datetime.datetime.now()
-date = int(dateTime.strftime("%Y%m%d"))
-random.seed(date)
-targetId = math.ceil(random.random()*38)
+# dateTime = datetime.datetime.now()
+# date = int(dateTime.strftime("%Y%m%d"))
+# random.seed(date)
+# targetId = math.ceil(random.random()*38)
+
 
 @app.route('/')
-@app.route('/gamepage', methods=['GET', 'POST'])
+@app.route('/gamepage')
 def gamepage():
-    hints = []
-    # names = Animals.query.all()
-    form = BaseForm()
-    if form.validate_on_submit():
-        guess = Animals.query.filter_by(name=form.guessWord.data).first()
-        target = Animals.query.filter_by(id=targetId).first()
-        if guess: 
-            if guess == target:
-                flash('congrats')
-                correct = 'true'
-                return render_template('gamepage.html', title='Home', form=form, correct= correct, hints=hints)
-            else:
-                flash('wrong guess')
-                previous_guess = guess
-                hints.append(Animals.query.filter_by(id=targetId).first())
-                return render_template('gamepage.html', title='Home', form=form, incorrect= 'false',\
-                    previous_guess=previous_guess, hints=hints)
-            # get gessnum hint
-        else:
-            flash('guess not in database')
-    else:
-        flash('nothing happened')
-    return render_template('gamepage.html', title='Home', form=form, hints=hints)
+    return render_template('gamepage.html', title='Home')
 
 @app.route('/answers')
 def names(): 
