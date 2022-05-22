@@ -2,7 +2,7 @@ from datetime import datetime
 import io
 from xmlrpc.client import Boolean
 from app import db, login
-import pandas as pd
+#import pandas as pd
 import requests
 from sqlalchemy import VARCHAR, create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -10,6 +10,7 @@ from flask_login import UserMixin
 
 
 class Animals(db.Model):
+    __tablename__ = 'animals'
     id = db.Column(db.Integer, primary_key = True)
     Name = db.Column(db.VARCHAR(50), unique=True, nullable = False)
     Classification = db.Column(db.VARCHAR(50), nullable = False)
@@ -22,7 +23,34 @@ class Animals(db.Model):
     Endangered = db.Column(db.VARCHAR(50), nullable = False)
 
     def __repr__(self):     #how the object is printed if the 'Animal' object is printed
-        return '{}'.format(self.Name)        #print just the name
+        return '[id:{}, Name:{}, Classification:{}, Legs:{}, Tail:{}, Wings:{}, Flippers:{}, Size:{}, Climate:{}, Endangered:{}]'.format(\
+            self.id, self.Name, self.Classification, self.Legs, self.Tail, self.Wings, self.Flippers, self.Size, self.Climate, self.Endangered)
+    
+    def to_dict(self):
+        data = {
+            'id': self.id, 
+            'Name': self.Name,
+            'Classification':self.Classification, 
+            'Legs': self.Legs, 
+            'Tail': self.Tail, 
+            'Wings': self.Wings, 
+            'Flippers': self.Flippers, 
+            'Size':self.Size, 
+            'Climate': self.Climate, 
+            'Endangered':self.Endangered
+        }
+        return data
+
+    def get_animal_names():
+        animals_list = Animals.query.all()
+        #animals_dict = to_dict(animals_list)
+        #animal_name_list = []
+        #for a in animals_list:
+            #animalName = a[1][5:]
+            #animal_name_list.append(animalName)
+        return animals_list
+    
+
 
 
 class Attempts(db.Model):
@@ -57,6 +85,8 @@ class Users(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return Users.query.get(int(id))
+
+
 
 #NOTE COMMENTED OUT AS DON'T NEED TO LOAD CSV INTO DB TWICE
 
