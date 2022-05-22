@@ -26,3 +26,7 @@ class RegistrationForm(FlaskForm):
         user = Users.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class BaseForm(FlaskForm):
+    guessWord = StringField('guessWord', validators=[DataRequired()])
+    submit = SubmitField('Submit')

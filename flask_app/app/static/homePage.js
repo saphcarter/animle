@@ -1,4 +1,6 @@
 // Creates table 6 rows x 2 columns
+//const {animal_names} = require('./gamepage.html');
+
 function loadFunction() {
     const table1 = document.createElement('table');
     for (i = 0; i < 6; i++) {
@@ -35,23 +37,37 @@ function loadFunction() {
 
     //links html to auto complete function
     autocomplete(document.getElementById("guessWord"), animals);
+   //console.log(Animal.query.all())
 }
 
 let guessNum = 0;
-var animals = ["Dog",  "Cat", "Tiger", "Lion", "Snake"];
-let target = animals[Math.floor(Math.random() * animals.length)].toUpperCase();
 
+var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
+"Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
+"Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
+"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
+
+
+
+//var animals = document.getElementById("auto")
+//let target = {animal_names};
+
+let index = Math.floor(Math.random() * animals.length)
+
+let target = animals[index];
 
 //NOTE need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
-    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value.toUpperCase();
+    let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
     
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
     }
-    // else if animal guess not in database
-    // alert "Input is not Australian animal in this game"
+     else if (animals.includes(inputWord) == false) {
+        alert("Input is not Australian animal in this game!!");
+    }
+
     else {
         let currentInputId = "row" + guessNum + "col0";
         let tableInput = document.getElementById(currentInputId);
@@ -64,7 +80,7 @@ function rowInputer() {
         document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
         document.getElementById("wordInputs").elements["guessWord"].value = '';
 
-        if (inputWord == target) {
+        if (inputWord.toUpperCase() == target.toUpperCase()) {
             document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
             document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
             document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
@@ -72,12 +88,12 @@ function rowInputer() {
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
 
-            for (let h=guessNum;h<6;h++) {
-                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**"
-                document.getElementById("row" + h + "col1").style.backgroundColor = 'green';
-                document.getElementById("row" + h + "col0").style.backgroundColor = 'green';
-                document.getElementById("row" + (h+1) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  "
-                document.getElementById("row" + (h+1) + "col1").innerHTML = "&#10003"
+            for (let h=guessNum+1;h<6;h++) {
+                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**";
+                document.getElementById("row" + (h) + "col1").style.backgroundColor = 'green';
+                document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
+                document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
+                document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
 
             }
         }
@@ -90,12 +106,13 @@ function rowInputer() {
         guessNum += 1;
 
         if ((guessNum == 6) && (inputWord != target)) {
-            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :(";
+            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses, the animal was: " + target;
             formSection.style.display = "none";
         }
-        else if (inputWord != target){
-            document.getElementById("hint" + (guessNum + 2)).innerHTML = "Hint " + (guessNum + 2) + ":" + "**hint from database**"
+        else if (inputWord.toUpperCase() != target.toUpperCase()){
+            document.getElementById("hint" + (guessNum + 3)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
         }
+        console.log(target);
     }
 }
 
@@ -104,27 +121,31 @@ function autocomplete(inp, arr) {
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
         closeAllLists();
-        if (!val) { return False; }
+        if (!val) { }
         /*create a DIV element that will contain the items (values):*/
-        a = document.createElement("div")
-        a.setAttribute("id", this.id + "autocomplete-list")
-        a.setAttribute("class", "autocomplete-items")
-        /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a)
-        for (i = 0; i < arr.length; i++) {
-            /*find items that make text field and create div */
-            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                b = document.createElement("div")
-                /*style choice - make the matching letters bold?:*/
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                b.addEventListener("click", function (e) {
-                    inp.value = this.getElementsByTagName("input")[0].value;
-                    closeAllLists();
-                });
-                a.appendChild(b);
+        else{
+            a = document.createElement("div")
+            a.setAttribute("id", this.id + "autocomplete-list")
+            a.setAttribute("class", "autocomplete-items")
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a)
+            for (i = 0; i < arr.length; i++) {
+                /*find items that make text field and create div */
+                let split = arr[i].split(" ");
+                for (k = 0; k < split.length; k++){
+                    if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        //if any of the split by spaces of the arr[i].substr(0,..)...
+                        b = document.createElement("div")
+                        b.innerHTML = arr[i];
+                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                        b.addEventListener("click", function (e) {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                }
             }
+        }
         }
     });
     function closeAllLists() {
@@ -133,6 +154,18 @@ function autocomplete(inp, arr) {
             toclose[i].parentNode.removeChild(toclose[i]);
         }
     };
+}
+
+function pickAnimal() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("testingDB").innerHTML = this.responseText;
+            animals = responseData['animals']
+    }
+};
+xhttp.open("GET", "getcustomer.php?q="+str, true);
+xhttp.send();
 }
 
 
