@@ -62,9 +62,9 @@ function rowInputer() {
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
     }
-    else if (animals.includes(inputWord) == false) {
-        alert("Input is not Australian animal in this game!!");
-    }
+    // else if (animals.includes(inputWord) == false) {
+    //     alert("Input is not Australian animal in this game!!");
+    // }
 
     else {
         let currentInputId = "row" + guessNum + "col0";
