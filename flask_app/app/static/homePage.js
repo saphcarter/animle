@@ -47,6 +47,8 @@ var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
 "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 
+
+
 //var animals = document.getElementById("auto")
 //let target = {animal_names};
 
@@ -62,9 +64,9 @@ function rowInputer() {
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
     }
-    // else if (animals.includes(inputWord) == false) {
-    //     alert("Input is not Australian animal in this game!!");
-    // }
+     else if (animals.includes(inputWord) == false) {
+        alert("Input is not Australian animal in this game!!");
+    }
 
     else {
         let currentInputId = "row" + guessNum + "col0";
@@ -165,4 +167,5 @@ function pickAnimal() {
 xhttp.open("GET", "getcustomer.php?q="+str, true);
 xhttp.send();
 }
+
 
