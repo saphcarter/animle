@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 
+{% block scripts %}
+    {% if names %}
+    <script id="database"> var database = '{{ names }}'; </script>
+    {% endif %}
+    {% if correct %}
+    <script id="correct"> var correct = true; </script>
+    {% if incorrect %}
+    <script id="correct"> var incorrect = true; </script>
+    {% endif %}
+    {% if guessnum %}
+    <script id="correct"> var guess = true; </script>
+    {% endif %}
+    {{ super() }}
+{% endblock %}
+
 {% block my_body %}
 <body onload="loadFunction()">
  
@@ -13,7 +28,7 @@
             <div class = "col-md-1"></div>
             <div class = "col-md-6" id = "gameInputs">
               <br>
-                <form  method="post" id="wordInputs" autocomplete="off"> 
+                <form action="" method="post" novalidate, id="wordInputs" autocomplete="off">
                   <br>
                   <div class="autocomplete">
                   <input id="guessWord" type="text" placeholder="Animal Guess...">
@@ -40,7 +55,14 @@
                 <p id="hint8">Hint 8:</p>
                 <p id="animalImage">image of animal here</p>
                 <p >Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
-                <p >Haven't logged in yet? <a href="{{ url_for('instructions') }}">Click here to login or register!</a></p>
+                {% if current_user.is_anonymous %}
+                    <p >Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
+                {% else %}
+                    <p> Hi, {{ current_user.username }}</p>
+                {% endif %}
+                {% for animle in database %}
+                    <div>{{ animle }}</div>
+                {% endfor %}
                 <div id="testingDB"></div>
             </div>
             <div class = "col-md-1"></div>

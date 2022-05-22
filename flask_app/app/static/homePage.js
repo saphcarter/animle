@@ -47,13 +47,12 @@ var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle
 "Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
 "Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 
-//console.log(db.session.Animal.query.all())
-
 //var animals = document.getElementById("auto")
 //let target = {animal_names};
 
-let target = animals[Math.floor(Math.random() * animals.length)];
+let index = Math.floor(Math.random() * animals.length)
 
+let target = animals[index];
 
 //NOTE need to write js to unlock clues as well
 function rowInputer() {
@@ -120,27 +119,29 @@ function autocomplete(inp, arr) {
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
         closeAllLists();
-        if (!val) { return False; }
+        if (!val) { }
         /*create a DIV element that will contain the items (values):*/
-        a = document.createElement("div")
-        a.setAttribute("id", this.id + "autocomplete-list")
-        a.setAttribute("class", "autocomplete-items")
-        /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a)
-        for (i = 0; i < arr.length; i++) {
-            /*find items that make text field and create div */
-            let split = arr[i].split(" ");
-            for (k = 0; k < split.length; k++){
-                if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    //if any of the split by spaces of the arr[i].substr(0,..)...
-                    b = document.createElement("div")
-                    b.innerHTML = arr[i];
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    b.addEventListener("click", function (e) {
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
+        else{
+            a = document.createElement("div")
+            a.setAttribute("id", this.id + "autocomplete-list")
+            a.setAttribute("class", "autocomplete-items")
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a)
+            for (i = 0; i < arr.length; i++) {
+                /*find items that make text field and create div */
+                let split = arr[i].split(" ");
+                for (k = 0; k < split.length; k++){
+                    if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        //if any of the split by spaces of the arr[i].substr(0,..)...
+                        b = document.createElement("div")
+                        b.innerHTML = arr[i];
+                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                        b.addEventListener("click", function (e) {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                }
             }
         }
         }
@@ -153,8 +154,6 @@ function autocomplete(inp, arr) {
     };
 }
 
-
-
 function pickAnimal() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -166,3 +165,4 @@ function pickAnimal() {
 xhttp.open("GET", "getcustomer.php?q="+str, true);
 xhttp.send();
 }
+
