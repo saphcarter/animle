@@ -136,7 +136,7 @@ function autocomplete(inp, arr) {
             this.parentNode.appendChild(a)
             for (i = 0; i < arr.length; i++) {
                 //find items that make text field and create div 
-                let split = arr.value[i].split(" ");
+                let split = arr[i].split(" ");
                 for (k = 0; k < split.length; k++){
                     if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                         //if any of the split by spaces of the arr[i].substr(0,..)...
