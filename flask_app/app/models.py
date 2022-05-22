@@ -2,12 +2,14 @@ from datetime import datetime
 import io
 from xmlrpc.client import Boolean
 from app import db, login
-import pandas as pd
-import requests
-from sqlalchemy import VARCHAR, create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+# NOTE Necessary for reading in csv file but not for code functionality so not in requirements  
+# # NOTE Just for a view of how animals were added to the database, database is included in zip
+# import pandas as pd
+# import requests
+# from sqlalchemy import VARCHAR, create_engine
 
 class Animals(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -76,7 +78,7 @@ def load_user(id):
 #     download = github_session.get(url).content
 
 #     # Reading the downloaded content and making it a pandas dataframe
-#     df = pd.read_csv(io.StringIO(download.decode('utf-8')))
+#     df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",")
 
 #     # Printing out the first 5 rows of the dataframe to make sure everything is good
 #     return df
