@@ -1,17 +1,34 @@
+from random import random
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
 from app.forms import LoginForm, RegistrationForm
 from app.models import Animals, Users
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
-
+import os
+from datetime import date
 
 
 @app.route('/')
-@app.route('/gamepage')
+@app.route('/gamepage', methods=['GET', 'POST'])
 def gamepage():
-    names = Animals.query.all()
-    return render_template('gamepage.html', title='Home',names=names)
+    hints = []
+    today = date.today()
+    rand = random.seed(today())
+    # names = Animals.query.all()
+    form = LoginForm()
+    if form.validate_on_submit():
+        guess = Animals.query.filter_by(name=form.guessWord.data).first()
+        target = Animals.query.filter_by(id=rand).first()
+        if guess: 
+            if guess == :
+            # do correct stuff
+            else:
+            # Animals.query.filter_by(id= rand + 1)
+            # get gessnum hint
+        else:
+            #flashed_message()
+    return render_template('gamepage.html', title='Home', form=form, hints=hints)
 
 @app.route('/answers')
 def names(): 
