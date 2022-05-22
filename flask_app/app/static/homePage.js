@@ -1,5 +1,30 @@
 // Creates table 6 rows x 2 columns
-//const {animal_names} = require('./gamepage.html');
+
+let guessNum = 0;
+
+var Names = ['Woylie', 'Southern Snapping Turtle', 'Hawksbill Turtle', 'Grey Nurse Shark', 'Sawfish', 'Mountain Pygmy Possum', 'Regent Honey Eater', 'Western Brown Snake', 'Red Kangaroo', 'Koala', 'Rock Wallaby', 'Wombat', 'Wedge Tailed Eagle', 'Pelican', 'Funnel Web Spider', 'Brush Tail Possum ', 'Echidna', 'Numbat', 'Emu', 'Western Australian Dhufish', 'Platapus', 'Sea Gull', 'Whale Shark', 'Dingo', 'Little Penguin', 'Quokka', 'Salt water Crocodile', 'Tasmanian Devil', 'Green Tree Frog', 'Frill Necked Lizard', 'Blue Tongued Lizard', 'Taipan', 'Cassowary', 'Goanna', 'Bilby', 'Kookaburra', 'Dugong', 'Gang Gang Cockatoo'];
+var Classification = ['Mammal', 'Reptile', 'Reptile', 'Fish', 'Fish', 'Mammal', 'Bird', 'Reptile', 'Mammal', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Bird', 'Arachnid', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Bird', 'Reptile', 'Mammal', 'Reptile', 'Reptile', 'Reptile', 'Reptile', 'Bird', 'Reptile', 'Mammal', 'Bird', 'Mammal', 'Bird'];
+var Tail = [true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
+var Wings = [false, false, false, false, false, false, false, true, false, false, false, false, false, true, true, false, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, false, false, true, false, false, true, false, true];
+var Flippers = [false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, true, false];
+var Size = ['S', 'M', 'M', 'L', 'L', 'S', 'S', 'M', 'L', 'M', 'M', 'M', 'M', 'M', 'XS', 'S', 'S', 'S', 'L', 'M', 'M', 'S', 'XL', 'M', 'S', 'S', 'XL', 'S', 'XS', 'S', 'S', 'M', 'L', 'M', 'S', 'S', 'L', 'S'];
+var Climate = ['Scrubland', 'Temporate', 'Coral Reef', 'Temporate Ocean', 'Tropical', 'Alpine', 'Temporate', 'Desert|Temporate|Scrubland', 'Desert|Scrubland', 'Temporate', 'Scrubland|Subtropical', 'Temporate', 'Dessert|Scrubland', 'Temporate Ocean', 'Temporate', 'Temporate', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Temporate Ocean', 'Temporate', 'Everywhere', 'Coral Reef', 'Dessert|Scrubland', 'Temporate', 'Temporate', 'Tropical|Equatorial', 'Temporate', 'Tropical', 'Dessert|Scrubland', 'Temporate|Scrubland', 'Dessert|Scrubland|Subtropical', 'Sub Tropical| Tropical', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Temporate|Scrubland', 'Coral Reef', 'Temporate'];
+var Endangered = ['CE', 'CE', 'CE', 'CE', 'CE', 'CE', 'CE', 'LC', 'LC', 'VU', 'EN', 'VU', 'LC', 'LC', 'LC', 'VU', 'VU', 'CE', 'LC', 'VU', 'EN', 'LC', 'VU', 'LC', 'LC', 'VU', 'LC', 'EN', 'LC', 'LC', 'EN', 'LC', 'VU', 'LC', 'EN', 'LC', 'VU', 'EN'];
+var Legs = [4, 4, 0, 0, 0, 4, 2, 0, 2, 4, 2, 4, 2, 2, 8, 4, 4, 4, 2, 0, 4, 2, 0, 4, 2, 4, 4, 4, 4, 4, 4, 0, 2, 4, 4, 2, 0, 2];
+console.log(Names[0], Wings[0], Classification[0])
+//TAIL WINGS or FLIPPERS may be around the wrong way - kookaburra says he has a tail, but no wings or flippers, is in temporate and is LC
+
+//Making a seed based on date
+var d = new Date()
+var day = d.getDate()
+var month = d.getMonth()+1
+var year = d.getFullYear()
+var date = year+month+day
+var index = parseInt(Math.floor(date % 38))
+
+//var index = Math.floor(Math.random() * animals.length)
+let target = Names[index];
+console.log(target)
 
 function loadFunction() {
     const table1 = document.createElement('table');
@@ -36,25 +61,9 @@ function loadFunction() {
     
 
     //links html to auto complete function
-    autocomplete(document.getElementById("guessWord"), animals);
-   //console.log(Animal.query.all())
+    autocomplete(document.getElementById("guessWord"), Names);
 }
 
-let guessNum = 0;
-
-var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
-"Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
-"Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
-"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
-
-
-
-//var animals = document.getElementById("auto")
-//let target = {animal_names};
-
-let index = Math.floor(Math.random() * animals.length)
-
-let target = animals[index];
 
 //NOTE need to write js to unlock clues as well
 function rowInputer() {
@@ -64,14 +73,14 @@ function rowInputer() {
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
     }
-     else if (animals.includes(inputWord) == false) {
-        alert("Input is not Australian animal in this game!!");
+     else if (Names.includes(inputWord) == false) {
+        alert("Input is not an Australian animal in this game!!");
     }
 
     else {
         let currentInputId = "row" + guessNum + "col0";
         let tableInput = document.getElementById(currentInputId);
-        tableInput.innerHTML = inputWord;
+        tableInput.innerHTML = inputWord.toUpperCase();
 
         let markingInputId = "row" + guessNum + "col1";
         let markingInput = document.getElementById(markingInputId);
@@ -97,22 +106,22 @@ function rowInputer() {
 
             }
         }
-        else {
+        else if ((guessNum == 5) && (inputWord != target)) {
             document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
             document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
             markingInput.innerHTML = "&#10060";
+            formSection.style.display = "none";
+            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :( <br> The answer was: '"+target.toUpperCase()+"'";
+        }
+        else if (inputWord.toUpperCase() != target.toUpperCase()){
+            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
+            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
+            markingInput.innerHTML = "&#10060";
+            //document.getElementById("hint" + (guessNum+4)).innerHTML = "Hint " + (guessNum+4) + ":" + "**hint from database**";
+            hintsInputer(guessNum);
         }
 
         guessNum += 1;
-
-        if ((guessNum == 6) && (inputWord != target)) {
-            document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses, the animal was: " + target;
-            formSection.style.display = "none";
-        }
-        else if (inputWord.toUpperCase() != target.toUpperCase()){
-            document.getElementById("hint" + (guessNum + 3)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
-        }
-        console.log(target);
     }
 }
 
@@ -156,37 +165,57 @@ function autocomplete(inp, arr) {
     };
 }
 
-function pickAnimal() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("testingDB").innerHTML = this.responseText;
-            animals = responseData['animals']
+//start with classification, size and legs
+//then climate, tail, wings, flippers, endangered
+ function hintsInputer(guessNumber){
+   
+    if (guessNumber==0) {
+        document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I live in a '" + Climate[index] + "' climate.";
     }
-};
-xhttp.open("GET", "getcustomer.php?q="+str, true);
-xhttp.send();
-}
+
+    else if (guessNumber==1) {
+        if (Tail[index] == true) {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have a tail.";
+        }
+        else {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have a tail.";
+        }
+        }
+    
+    else if (guessNumber==2) {
+        if (Wings[index] == true) {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have wings.";
+        }
+        else {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have wings.";
+        }
+        }
+
+    else if (guessNumber==3) {
+        if (Flippers[index] == true) {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have a fins or flippers.";
+        }
+        else {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have fins or flippers.";
+        }
+        }
+
+    else if (guessNumber==4) {
+        if (Endangered[index] == 'CE') {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is critically endangered.";
+        }
+        else if (Endangered[index] == 'LC') {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is of least concern.";
+        }
+        else if (Endangered[index] == 'VU') {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is vulnerable.";
+        }
+        else if (Endangered[index] == 'EN') {
+            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is endangered.";
+        }
+    }    
+ }
+
+ //" My Classification is '" + Classification[index] + "'"
 
 
-// //Connecting Social Media//
-// var text = encodeURIComponent("Follow JavaScript Jeep form Amazing JavaScript Tutorial");
-// var url = "//homeurl";
-// var user_id = "USER_ID";
-// var hash_tags = "Wordle, Animle";
-
-
-// //var params = "menubar=no,toolbar=no,status=no,width=570,height=570"; // for window
-// function ShareToTwitter(){
-//    let Shareurl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&via=${user_id}&hashtags=${hash_tags}`;
-//    window.open(Shareurl,"NewWindow" , params);
-// }
-
-//Facebook
-const facebook = document.getElementById("Facebook");
-facebook.addEventListener('click', shareonFacebook);
-
-function shareOnFacebook(){
-  const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + 'https://github.com/knoldus/angular-facebook-twitter.git';
-  window.open(navUrl , '_blank');
-}

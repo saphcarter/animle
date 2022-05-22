@@ -7,11 +7,6 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 import os, math, random, datetime, requests
 
-# dateTime = datetime.datetime.now()
-# date = int(dateTime.strftime("%Y%m%d"))
-# random.seed(date)
-# targetId = math.ceil(random.random()*38)
-
 
 @app.route('/')
 @app.route('/gamepage')
