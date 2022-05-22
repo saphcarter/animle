@@ -169,3 +169,24 @@ xhttp.send();
 }
 
 
+// //Connecting Social Media//
+// var text = encodeURIComponent("Follow JavaScript Jeep form Amazing JavaScript Tutorial");
+// var url = "//homeurl";
+// var user_id = "USER_ID";
+// var hash_tags = "Wordle, Animle";
+
+
+// //var params = "menubar=no,toolbar=no,status=no,width=570,height=570"; // for window
+// function ShareToTwitter(){
+//    let Shareurl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&via=${user_id}&hashtags=${hash_tags}`;
+//    window.open(Shareurl,"NewWindow" , params);
+// }
+
+//Facebook
+const facebook = document.getElementById("Facebook");
+facebook.addEventListener('click', shareonFacebook);
+
+function shareOnFacebook(){
+  const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + 'https://github.com/knoldus/angular-facebook-twitter.git';
+  window.open(navUrl , '_blank');
+}
