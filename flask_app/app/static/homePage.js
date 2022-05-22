@@ -2,63 +2,69 @@
 //const {animal_names} = require('./gamepage.html');
 
 function loadFunction() {
-    const table1 = document.createElement('table');
-    for (i = 0; i < 6; i++) {
-        const tableRow = document.createElement('tr');
+    //get animals
+    var animalPromise = GetAllAnimalName();
+    let target = ""
+    let arrayAnimalNames = []
+    //let arrayClimates = [] i.e. for climates
+    animalPromise.success(function (data){ //due to async all code using this data must be within the promise
+            for(let i = 0; i < data.length; i++){
+                arrayAnimalNames.push(data[i]["Name"]) //create an array with all the names of animals
+                //arrayClimates.push(data[i]('Climates'))
+            }
+            let index = Math.floor(Math.random() * arrayAnimalNames.length) //Do on serverside??
+            target = arrayAnimalNames[index];//guess
+            
 
-        const tableData1 = document.createElement('td');
-        tableData1.innerHTML = '_______________';
-        tableData1.setAttribute('width', "85%");
-        tableData1.setAttribute('id', "row" + i + "col0");
-        tableRow.appendChild(tableData1);
+        const table1 = document.createElement('table');
+        for (i = 0; i < 6; i++) {
+            const tableRow = document.createElement('tr');
 
-        const tableData2 = document.createElement('td');
-        tableData2.setAttribute('width', "15%");
-        tableData2.setAttribute('id', "row" + i + "col1");
-        tableRow.appendChild(tableData2);
-        table1.appendChild(tableRow);
-    }
+            const tableData1 = document.createElement('td');
+            tableData1.innerHTML = '_______________';
+            tableData1.setAttribute('width', "85%");
+            tableData1.setAttribute('id', "row" + i + "col0");
+            tableRow.appendChild(tableData1);
 
-    table1.setAttribute("id", "guessTable");
-    form1 = document.getElementById("wordInputs");
-    document.getElementById('gameInputs').insertBefore(table1, form1);
-
-    //links html to row inputer function
-    submitButton = document.getElementById('submitWord');
-    submitButton.addEventListener('click', rowInputer);
-    guessWord = document.getElementById('guessWord');
-    guessWord.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          submitButton.click();
+            const tableData2 = document.createElement('td');
+            tableData2.setAttribute('width', "15%");
+            tableData2.setAttribute('id', "row" + i + "col1");
+            tableRow.appendChild(tableData2);
+            table1.appendChild(tableRow);
         }
-    })
-    
 
-    //links html to auto complete function
-    autocomplete(document.getElementById("guessWord"), animals);
-   //console.log(Animal.query.all())
+        table1.setAttribute("id", "guessTable");
+        form1 = document.getElementById("wordInputs");
+        document.getElementById('gameInputs').insertBefore(table1, form1);
+
+        //links html to row inputer function
+        submitButton = document.getElementById('submitWord');
+        submitButton.addEventListener('click', rowInputer(target));
+        guessWord = document.getElementById('guessWord');
+        guessWord.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+            event.preventDefault();
+            submitButton.click();
+            }
+        })
+        
+        //links html to auto complete function
+        autocomplete(document.getElementById("guessWord"), arrayAnimalNames);
+    //console.log(Animal.query.all())
+    })
 }
 
 let guessNum = 0;
-
-var animals = ["Numbat", "Woylie", "Southern Snapping Turtle", "Hawksbill Turtle",
-"Grey Nurse Shark", "Sawfish", "Mountain Pygmy Possum", "Regent Honey Eater", "Western Brown Snake", 
-"Red Kangaroo", "Koala", "Rock Wallaby", "Wombat", "Wedge Tailed Eagle", "Pelican", 
-"Funnel Web Spider", "Brush Tail Possum", "Echidna", "Bull Ant"];
 
 
 
 //var animals = document.getElementById("auto")
 //let target = {animal_names};
 
-let index = Math.floor(Math.random() * animals.length)
-
-let target = animals[index];
-
 //NOTE need to write js to unlock clues as well
-function rowInputer() {
-    var table = document.getElementById("guessTable");
+function rowInputer(target) {
+    console.log(target)
+    //var table = document.getElementById("guessTable");
     let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
     
     if (inputWord.length == 0) {
@@ -112,9 +118,9 @@ function rowInputer() {
         else if (inputWord.toUpperCase() != target.toUpperCase()){
             document.getElementById("hint" + (guessNum + 3)).innerHTML = "Hint " + (guessNum + 3) + ":" + "**hint from database**"
         }
-        console.log(target);
     }
 }
+
 
 
 function autocomplete(inp, arr) {
@@ -122,15 +128,15 @@ function autocomplete(inp, arr) {
         var a, b, i, val = this.value;
         closeAllLists();
         if (!val) { }
-        /*create a DIV element that will contain the items (values):*/
+        //create a DIV element that will contain the items (values):
         else{
             a = document.createElement("div")
             a.setAttribute("id", this.id + "autocomplete-list")
             a.setAttribute("class", "autocomplete-items")
-            /*append the DIV element as a child of the autocomplete container:*/
+            //append the DIV element as a child of the autocomplete container:
             this.parentNode.appendChild(a)
             for (i = 0; i < arr.length; i++) {
-                /*find items that make text field and create div */
+                //find items that make text field and create div 
                 let split = arr[i].split(" ");
                 for (k = 0; k < split.length; k++){
                     if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
@@ -148,6 +154,8 @@ function autocomplete(inp, arr) {
         }
         }
     });
+
+
     function closeAllLists() {
         var toclose = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < toclose.length; i++) {
@@ -156,7 +164,7 @@ function autocomplete(inp, arr) {
     };
 }
 
-function pickAnimal() {
+/*function pickAnimal() { this won't work
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -166,6 +174,6 @@ function pickAnimal() {
 };
 xhttp.open("GET", "getcustomer.php?q="+str, true);
 xhttp.send();
-}
+}*/
 
 
