@@ -1,15 +1,22 @@
 from datetime import datetime
+import io
 from xmlrpc.client import Boolean
 from app import db, login
-from sqlalchemy import VARCHAR, create_engine
+#import pandas as pd
+#import requests
+#from sqlalchemy import VARCHAR, create_engine
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-
-
-#TODO: For some reason 'from app.models import User' is resulting in an ImportError. Commented out temporarily to enable other work to be done.
+# NOTE Necessary for reading in csv file but not for code functionality so not in requirements  
+# # NOTE Just for a view of how animals were added to the database, database is included in zip
+# import pandas as pd
+# import requests
+# from sqlalchemy import VARCHAR, create_engine
 
 class Animals(db.Model):
+    __tablename__ = 'animals'
     id = db.Column(db.Integer, primary_key = True)
     Name = db.Column(db.VARCHAR(50), unique=True, nullable = False)
     Classification = db.Column(db.VARCHAR(50), nullable = False)
@@ -20,10 +27,36 @@ class Animals(db.Model):
     Size = db.Column(db.VARCHAR(2), nullable = False)
     Climate = db.Column(db.VARCHAR(50), nullable = False)
     Endangered = db.Column(db.VARCHAR(50), nullable = False)
-    Image = db.Column(db.String(120), default='')             #TODO: Need to add to DB
 
     def __repr__(self):     #how the object is printed if the 'Animal' object is printed
-        return '{}>'.format(self.Name)        #print just the name
+        return '[id:{}, Name:{}, Classification:{}, Legs:{}, Tail:{}, Wings:{}, Flippers:{}, Size:{}, Climate:{}, Endangered:{}]'.format(\
+            self.id, self.Name, self.Classification, self.Legs, self.Tail, self.Wings, self.Flippers, self.Size, self.Climate, self.Endangered)
+    
+    def to_dict(self):
+        data = {
+            'id': self.id, 
+            'Name': self.Name,
+            'Classification':self.Classification, 
+            'Legs': self.Legs, 
+            'Tail': self.Tail, 
+            'Wings': self.Wings, 
+            'Flippers': self.Flippers, 
+            'Size':self.Size, 
+            'Climate': self.Climate, 
+            'Endangered':self.Endangered
+        }
+        return data
+
+    def get_animal_names():
+        animals_list = Animals.query.all()
+        #animals_dict = to_dict(animals_list)
+        #animal_name_list = []
+        #for a in animals_list:
+            #animalName = a[1][5:]
+            #animal_name_list.append(animalName)
+        return animals_list
+    
+
 
 
 class Attempts(db.Model):
@@ -33,7 +66,7 @@ class Attempts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
-        return ('<User {}>'.format(self.user_id) + '<Number {}>'.format(self.number))
+        return ('User {}:'.format(self.user_id) + '{}'.format(self.number))
 
 
 class Users(UserMixin, db.Model):
@@ -44,7 +77,10 @@ class Users(UserMixin, db.Model):
     attempts = db.relationship('Attempts', backref='author', lazy='dynamic')
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '{}'.format(self.username)
+
+    # def check_email(self):
+    #     return '<email {}>'.format(self.email)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -55,6 +91,8 @@ class Users(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return Users.query.get(int(id))
+
+
 
 #NOTE COMMENTED OUT AS DON'T NEED TO LOAD CSV INTO DB TWICE
 
@@ -70,11 +108,11 @@ def load_user(id):
 #     github_session.auth = (username, token)
         
 #     # Downloading the csv file from your GitHub
-#     url = "https://raw.githubusercontent.com/saphcarter/animle/SBX/flask_app/Animals_database.csv?token=GHSAT0AAAAAABUB5SDUGZONEPOUPHV35O4WYUEJGFA" # Make sure the url is the raw version of the file on GitHub
+#     url = "https://raw.githubusercontent.com/saphcarter/animle/SBX/flask_app/Animals_database.csv?token=GHSAT0AAAAAABUB5SDUK437I5BZFHYNHV3UYUJSQGA" # Make sure the url is the raw version of the file on GitHub
 #     download = github_session.get(url).content
 
 #     # Reading the downloaded content and making it a pandas dataframe
-#     df = pd.read_csv(io.StringIO(download.decode('utf-8')))
+#     df = pd.read_csv(io.StringIO(download.decode('utf-8')), delimiter=",")
 
 #     # Printing out the first 5 rows of the dataframe to make sure everything is good
 #     return df
@@ -101,7 +139,7 @@ def load_user(id):
 #                             ,Size = animal[6]
 #                             ,Climate = animal[7]
 #                             ,Endangered = animal[8]
-#                             ,Image = animal[9])
+#                             )
 #             db.session.add(Animal_data)
 #             db.session.commit()
 #         except:
