@@ -1,11 +1,14 @@
+from gc import get_debug
+import json
 from random import random
-from flask import render_template, flash, redirect, url_for, request, jsonify
+from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from app import app, db
 from app.forms import LoginForm, RegistrationForm
 from app.models import Animals, Users
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 import os, math, random, datetime, requests
+from flask_sqlalchemy import SQLAlchemy
 
 dateTime = datetime.datetime.now()
 date = int(dateTime.strftime("%Y%m%d"))
@@ -34,8 +37,13 @@ def gamepage():
 
 @app.route('/answers')
 def names(): 
-    animal_names = Animals.query.with_entities(Animals.Name)
-    return jsonify(animal_names)
+    animal_names = Animals.query.with_entities(Animals.Name, Animals.id).all()
+    print("these are animal names", animal_names)
+    data = []
+    for animal in animal_names:
+        data.append(dict(animal))
+        
+    return jsonify(data)
     
 
 @app.route('/login', methods=['GET', 'POST'])
