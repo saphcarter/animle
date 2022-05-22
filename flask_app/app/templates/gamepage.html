@@ -1,24 +1,7 @@
 {% extends "base.html" %}
-<!--
-{% block scripts %}
-    {% if names %}
-    <script id="database"> var database = '{{ names }}'; </script>
-    {% endif %}
-    {% if correct %}
-    <script id="correct"> var correct = true; </script>
-    {% if incorrect %}
-    <script id="correct"> var incorrect = true; </script>
-    {% endif %}
-    {% if guessnum %}
-    <script id="correct"> var guess = true; </script>
-    {% endif %}
-    {{ super() }}
-{% endblock %}
--->
 
 {% block my_body %}
 <body onload="loadFunction()">
- 
 {% endblock %}
 
 {% block app_content %}
@@ -30,15 +13,27 @@
             <div class = "col-md-6" id = "gameInputs">
               <br>
                 <form action="" method="post" novalidate, id="wordInputs" autocomplete="off">
+                    {{ form.hidden_tag() }}
                   <br>
                   <div class="autocomplete">
-                  <input id="guessWord" type="text" placeholder="Animal Guess...">
+                    {{ form.guessWord(size=24) }}<br>
                   </div>
                   <br>
-                  <input id = "submitWord" type = "button" value = "Submit">
+                  <p>{{ form.submit() }}</p>
                   <br>
                 </form>	
                 <br>
+                <div style = "color:red;">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+    
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                
+                {% endif %}
+                {% endwith %}
+                </div>
                 <p id="finalMessage" style="color:white">You have 6 guesses remaining!</p>
                 <br>
             </div>

@@ -1,7 +1,7 @@
 from random import random
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, BaseForm
 from app.models import Animals, Users
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
@@ -17,19 +17,26 @@ targetId = math.ceil(random.random()*38)
 def gamepage():
     hints = []
     # names = Animals.query.all()
-    form = LoginForm()
+    form = BaseForm()
     if form.validate_on_submit():
         guess = Animals.query.filter_by(name=form.guessWord.data).first()
         target = Animals.query.filter_by(id=targetId).first()
         if guess: 
             if guess == target:
                 flash('congrats')
+                correct = 'true'
+                return render_template('gamepage.html', title='Home', form=form, correct= correct, hints=hints)
             else:
                 flash('wrong guess')
+                previous_guess = guess
                 hints.append(Animals.query.filter_by(id=targetId).first())
+                return render_template('gamepage.html', title='Home', form=form, incorrect= 'false',\
+                    previous_guess=previous_guess, hints=hints)
             # get gessnum hint
         else:
             flash('guess not in database')
+    else:
+        flash('nothing happened')
     return render_template('gamepage.html', title='Home', form=form, hints=hints)
 
 @app.route('/answers')
