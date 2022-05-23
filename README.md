@@ -23,26 +23,21 @@ When registering there are error feedbacks if your username or email are not uni
 launching has only been done from MacOS or WSL2 environment, please choose only these options or commands will not work.
 
 Steps:
-1. Cd into the flask_app folder, run command:
+1. Cd into the flask_app folder, run command: (This will take a while to run, don't worry.)
 		
-    $ python3 -m venv venv
+        $ python3 -m venv venv
 
-This will take a while to run, don't worry.
 2. Then run this command which produces the following output indicating your venv successfully activated:
-		
         $ source venv/bin/activate
 		(venv) $ _
-
-	3. Then with pip run:
-		
+3. Then with pip run:
         $ pip install -r requirements.txt
-
-	4. This will install all the packages from our requirements file.
-	5. Run this command:
+4. This will install all the packages from our requirements file.
+5. Run this command:
 	    
         $ flask run
 
-	6. This opens up the website at http://127.0.0.1:5000
+6. This opens up the website at http://127.0.0.1:5000
 
 ### Unit tests
 A python class unit test for testing models and their functions
