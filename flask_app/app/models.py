@@ -4,7 +4,7 @@ from xmlrpc.client import Boolean
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+# Animals class shows the DB schema which would describe each animal
 class Animals(db.Model):
     __tablename__ = 'animals'
     id = db.Column(db.Integer, primary_key = True)
@@ -22,7 +22,7 @@ class Animals(db.Model):
         return '[id:{}, Name:{}, Classification:{}, Legs:{}, Tail:{}, Wings:{}, Flippers:{}, Size:{}, Climate:{}, Endangered:{}]'.format(\
             self.id, self.Name, self.Classification, self.Legs, self.Tail, self.Wings, self.Flippers, self.Size, self.Climate, self.Endangered)
 
-
+# DB schema table for user attempts, storing game stats for users to access 
 class Attempts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
@@ -32,7 +32,7 @@ class Attempts(db.Model):
     def __repr__(self):
         return ('User {}:'.format(self.user_id) + '{}'.format(self.number))
 
-
+#DB schema table for Users info, allowing them to store and access user registration info
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -48,7 +48,7 @@ class Users(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
+# a login function access the id of the user in order to authenticate where they're on the DB
 @login.user_loader
 def load_user(id):
     return Users.query.get(int(id))
