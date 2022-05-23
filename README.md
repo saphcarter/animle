@@ -43,6 +43,8 @@ A python class unit test for testing models and their functions
     1. from WSL terminal, run command: 
         flask_app$ python3 models_test.py
     2. This was our output 
+        ---------------------------------------------------------------------
+        
         test_correct_login (__main__.ModelsTest) ... ok
         test_incorrect_login (__main__.ModelsTest) ... ok
         test_password_hashing (__main__.ModelsTest) ... ok
