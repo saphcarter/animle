@@ -23,12 +23,12 @@ When registering there are error feedbacks if your username or email are not uni
 launching has only been done from MacOS or WSL2 environment, please choose only these options or commands will not work.
 
 Steps:
-	1. Cd into the flask_app folder, run command:
+1. Cd into the flask_app folder, run command:
 		
-        $ python3 -m venv venv
+    $ python3 -m venv venv
 
-	This will take a while to run, don't worry.
-	2. Then run this command which produces the following output indicating your venv successfully activated:
+This will take a while to run, don't worry.
+2. Then run this command which produces the following output indicating your venv successfully activated:
 		
         $ source venv/bin/activate
 		(venv) $ _
@@ -95,7 +95,7 @@ There is also a selenium python script w/ firefox driver that has the same requi
     2. From a seperate terminal (we used WSL) run:
        
         flask_app$ python3 selenium/firefox_test.py
-        
+
     *Inside firefox_test.py file there are also notes on how you can break the code so that exceptions are thrown and handled. This demonstrates what is outputted when the tests are unsuccessful (and that exceptions do not force the program to fail)
 
 ### Commitlogs & Review from contributing students
