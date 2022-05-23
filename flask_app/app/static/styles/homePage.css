@@ -1,29 +1,29 @@
 body {
     background-color: rgb(0, 25, 0);
-};
+}
 
 .row {
     border: 10px black;
     background-color: white;
-};
+}
 
 .h1 {
     color: white
-};
+}
 
 .h4 {
     color: lightblue
-};
+}
   
 .nav {
     border: 2px white;
-};
+}
 
 #game_row {
     background-color: rgb(37, 62, 1);
     text-align: center;
     margin: 0px 10px 10px 10px;
-};
+}
 
 #Heading {
     text-align: center;
@@ -31,27 +31,27 @@ body {
     border-left-color: black;
     background-color: rgb(3, 64, 3);
     margin: 10px 10px 0px 10px;
-};
+}
 
 #game_row {
     background-color: rgb(37, 62, 1);
     text-align: center;
     margin: 0px 10px 10px 10px;
-};
+}
 
 #game_inputs {
     background-color: grey;
     margin: 10px
-};
+}
 
 #game_hints {
     margin: 10px;
     background-color: white;
-};
+}
 
 td {
     background-color: brown;
-};
+}
 
 table {
     width: 70%;
@@ -59,17 +59,17 @@ table {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-};
+}
 
 td, table {
     border: 2px solid white;
     border-collapse: collapse;
-};
+}
 
 .autocomplete {
     position: relative;
     display: inline-block;
-};
+}
 
 .autocomplete-items {
     position: absolute;
@@ -78,15 +78,15 @@ td, table {
     left: 0;
     right: 0;
     border: 1px solid #e0e0e0;
-};
+}
 
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
-};
+}
 
 .autocomplete-items div:hover {
     background-color: #ded9d9;
-};
+}
