@@ -44,15 +44,12 @@ function loadFunction() {
 function rowInputer() {
     var table = document.getElementById("guessTable");
     let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
-    guessNum += 1;
-    
-
     
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
         document.getElementById("wordInputs").elements["guessWord"].value = '';
     }
-     else if (Names.includes(inputWord) == false) {
+    else if (Names.includes(inputWord) == false) {
         alert("Input is not an Australian animal in this game!!");
         document.getElementById("wordInputs").elements["guessWord"].value = '';
     }
@@ -63,6 +60,7 @@ function rowInputer() {
 
     else {
         //Inputs users guess into table and updates guesses remaining
+        guessNum += 1;
         previousGuesses.push(inputWord.toUpperCase())
         let currentInputId = "row" + (guessNum-1) + "col0";
         let tableInput = document.getElementById(currentInputId);
@@ -82,6 +80,8 @@ function rowInputer() {
             document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
+            document.getElementById("hintTitle").innerHTML = "Characteristics of " + target;
+            //document.getElementById("thisAttempt").innerHTML = "It took you "+guessNum+" guesses today!";
             //post guessNum variable
 
             //Making remaining rows green
@@ -91,17 +91,15 @@ function rowInputer() {
                     document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
                     document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
                     document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
-                    console.log(guessNum);
                 }
             }  
             
             //Implementing the rest of the hints
-            for (let i=guessNum; i<7; i++){
+            for (let i=guessNum; i<6; i++){
                 document.getElementById("hint"+(i+3)).style.display = "block";
                 hintsInputer(i)
             }
 
-            
         }
         else if ((guessNum == 6) && (inputWord != target)) {
             document.getElementById("row" + (guessNum-1) + "col1").style.backgroundColor = 'grey';
@@ -109,6 +107,7 @@ function rowInputer() {
             markingInput.innerHTML = "&#10060";
             formSection.style.display = "none";
             document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :( <br> The answer was: '"+target.toUpperCase()+"'";
+            //document.getElementById("thisAttempt").innerHTML = "Sorry you did not complete the Animle for today :(";
         }
         else if (inputWord.toUpperCase() != target.toUpperCase()){
             document.getElementById("row" + (guessNum-1) + "col1").style.backgroundColor = 'grey';
@@ -118,6 +117,7 @@ function rowInputer() {
             document.getElementById("hint"+(guessNum+4)).style.display = "block";
         }
     }
+    
 }
 
 
@@ -175,7 +175,7 @@ function hintsInputer(guessNumber){
             document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I have wings.";
         }
         else {
-            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I DON'T have wings.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I don't have wings.";
         }
         }
 
@@ -184,7 +184,7 @@ function hintsInputer(guessNumber){
             document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I have a fins or flippers.";
         }
         else {
-            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I DON'T have fins or flippers.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I don't have fins or flippers.";
         }
         }
 
@@ -203,7 +203,6 @@ function hintsInputer(guessNumber){
         }
     }    
  }
-
 
 
 function hintsInitiator(){
@@ -225,7 +224,7 @@ function hintsInitiator(){
         document.getElementById("hint2").innerHTML = "I am extra large in size.";
     }
     if (Legs[index] == 0){
-        document.getElementById("hint3").innerHTML = "I DON'T have any legs";
+        document.getElementById("hint3").innerHTML = "I don't have any legs";
     }
     else if (Legs[index] == 1) {
         document.getElementById("hint3").innerHTML = "I have 1 leg.";
@@ -257,3 +256,16 @@ var index = parseInt(Math.floor(date % 38))
 
 //var index = Math.floor(Math.random() * animals.length)
 let target = Names[index];
+
+
+//NOT WORKING YET - UNABLE TO MAKE ANY STATS
+function postGuessNum () {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        //document.getElementById("thisAttempt").innerHTML = "It took you "+guessNum+" guesses today!";
+        //document.getElementById("demo").innerHTML = this.responseText;
+        document.getElementById("thisAttempt").innerHTML = this.responseText;
+      }
+      xhttp.open("GET", "demo_get.asp");
+      xhttp.send();
+}
