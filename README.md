@@ -26,24 +26,30 @@ Steps:
 	1. Cd into the flask_app folder, run command:
 		
         $ python3 -m venv venv
+
 	This will take a while to run, don't worry.
 	2. Then run this command which produces the following output indicating your venv successfully activated:
 		
         $ source venv/bin/activate
 		(venv) $ _
+
 	3. Then with pip run:
 		
         $ pip install -r requirements.txt
+
 	4. This will install all the packages from our requirements file.
 	5. Run this command:
 	    
         $ flask run
+
 	6. This opens up the website at http://127.0.0.1:5000
 
 ### Unit tests
 A python class unit test for testing models and their functions
     1. from WSL terminal, run command: 
+
         flask_app$ python3 models_test.py
+
     2. This was our output 
 
         test_correct_login (__main__.ModelsTest) ... ok
@@ -62,6 +68,7 @@ A selenium python script w/ chrome driver that requires you to be running the lo
     2. From a seperate terminal (we used WSL) run:
         
         flask_app$ python3 selenium/chrome_test.py
+
     3. This was our output, this is obviously a fully successful output:
         
         Testing initial load
@@ -82,11 +89,13 @@ A selenium python script w/ chrome driver that requires you to be running the lo
         Number of successful tests: 6
         Number of failed tests: 0
         Number of tests aborted due to previous errors: 0
+
     *If you read inside the chrome_test.py file, there are notes of how you can break the code so that exceptions are thrown and handled. This demonstrates what is outputted when the tests are unsuccessful (and that exceptions do not force the program to fail)
 There is also a selenium python script w/ firefox driver that has the same requirements and is also not an isolated test class so we do not add things to the database here either. Follow the same steps for the chrome_test.py file but these changes
     2. From a seperate terminal (we used WSL) run:
        
         flask_app$ python3 selenium/firefox_test.py
+        
     *Inside firefox_test.py file there are also notes on how you can break the code so that exceptions are thrown and handled. This demonstrates what is outputted when the tests are unsuccessful (and that exceptions do not force the program to fail)
 
 ### Commitlogs & Review from contributing students
