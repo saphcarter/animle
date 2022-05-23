@@ -2,19 +2,9 @@ from datetime import datetime
 import io
 from xmlrpc.client import Boolean
 from app import db, login
-#import pandas as pd
-#import requests
-#from sqlalchemy import VARCHAR, create_engine
-
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
-# NOTE Necessary for reading in csv file but not for code functionality so not in requirements  
-# # NOTE Just for a view of how animals were added to the database, database is included in zip
-# import pandas as pd
-# import requests
-# from sqlalchemy import VARCHAR, create_engine
-
+# Animals class shows the DB schema which would describe each animal
 class Animals(db.Model):
     __tablename__ = 'animals'
     id = db.Column(db.Integer, primary_key = True)
@@ -28,37 +18,11 @@ class Animals(db.Model):
     Climate = db.Column(db.VARCHAR(50), nullable = False)
     Endangered = db.Column(db.VARCHAR(50), nullable = False)
 
-    def __repr__(self):     #how the object is printed if the 'Animal' object is printed
+    def __repr__(self):  
         return '[id:{}, Name:{}, Classification:{}, Legs:{}, Tail:{}, Wings:{}, Flippers:{}, Size:{}, Climate:{}, Endangered:{}]'.format(\
             self.id, self.Name, self.Classification, self.Legs, self.Tail, self.Wings, self.Flippers, self.Size, self.Climate, self.Endangered)
-    
-    def to_dict(self):
-        data = {
-            'id': self.id, 
-            'Name': self.Name,
-            'Classification':self.Classification, 
-            'Legs': self.Legs, 
-            'Tail': self.Tail, 
-            'Wings': self.Wings, 
-            'Flippers': self.Flippers, 
-            'Size':self.Size, 
-            'Climate': self.Climate, 
-            'Endangered':self.Endangered
-        }
-        return data
 
-    def get_animal_names():
-        animals_list = Animals.query.all()
-        #animals_dict = to_dict(animals_list)
-        #animal_name_list = []
-        #for a in animals_list:
-            #animalName = a[1][5:]
-            #animal_name_list.append(animalName)
-        return animals_list
-    
-
-
-
+# DB schema table for user attempts, storing game stats for users to access 
 class Attempts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
@@ -68,7 +32,7 @@ class Attempts(db.Model):
     def __repr__(self):
         return ('User {}:'.format(self.user_id) + '{}'.format(self.number))
 
-
+#DB schema table for Users info, allowing them to store and access user registration info
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -79,22 +43,23 @@ class Users(UserMixin, db.Model):
     def __repr__(self):
         return '{}'.format(self.username)
 
-    # def check_email(self):
-    #     return '<email {}>'.format(self.email)
-
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
+# a login function access the id of the user in order to authenticate where they're on the DB
 @login.user_loader
 def load_user(id):
     return Users.query.get(int(id))
 
 
 
-#NOTE COMMENTED OUT AS DON'T NEED TO LOAD CSV INTO DB TWICE
+#NOTE COMMENTED OUT AS DON'T NEED TO LOAD ORIGINAL CSV INTO DATABASE TWICE
+
+#import pandas as pd
+#import requests
+#from sqlalchemy import VARCHAR, create_engine
 
 # def pd_access():
 #     # Username of your GitHub account
@@ -118,10 +83,6 @@ def load_user(id):
 #     return df
 
 # df = pd_access()
-
-
-# ######################
-
 
 # # engine = create_engine('sqlite:///df.db', echo=True)
 # # sqlite_connection = engine.connect()
