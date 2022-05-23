@@ -4,27 +4,24 @@ let guessNum = 0;
 
 var Names = ['Woylie', 'Southern Snapping Turtle', 'Hawksbill Turtle', 'Grey Nurse Shark', 'Sawfish', 'Mountain Pygmy Possum', 'Regent Honey Eater', 'Western Brown Snake', 'Red Kangaroo', 'Koala', 'Rock Wallaby', 'Wombat', 'Wedge Tailed Eagle', 'Pelican', 'Funnel Web Spider', 'Brush Tail Possum ', 'Echidna', 'Numbat', 'Emu', 'Western Australian Dhufish', 'Platapus', 'Sea Gull', 'Whale Shark', 'Dingo', 'Little Penguin', 'Quokka', 'Salt water Crocodile', 'Tasmanian Devil', 'Green Tree Frog', 'Frill Necked Lizard', 'Blue Tongued Lizard', 'Taipan', 'Cassowary', 'Goanna', 'Bilby', 'Kookaburra', 'Dugong', 'Gang Gang Cockatoo'];
 var Classification = ['Mammal', 'Reptile', 'Reptile', 'Fish', 'Fish', 'Mammal', 'Bird', 'Reptile', 'Mammal', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Bird', 'Arachnid', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Bird', 'Reptile', 'Mammal', 'Reptile', 'Reptile', 'Reptile', 'Reptile', 'Bird', 'Reptile', 'Mammal', 'Bird', 'Mammal', 'Bird'];
-var Tail = [true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
-var Wings = [false, false, false, false, false, false, false, true, false, false, false, false, false, true, true, false, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, false, false, true, false, false, true, false, true];
+var Tail = [true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
+var Wings = [false, false, false, false, false, false, true, false, false, false, false, false, true, true, false, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, false, false, true, false, false, true, false, true];
 var Flippers = [false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, true, false];
 var Size = ['S', 'M', 'M', 'L', 'L', 'S', 'S', 'M', 'L', 'M', 'M', 'M', 'M', 'M', 'XS', 'S', 'S', 'S', 'L', 'M', 'M', 'S', 'XL', 'M', 'S', 'S', 'XL', 'S', 'XS', 'S', 'S', 'M', 'L', 'M', 'S', 'S', 'L', 'S'];
 var Climate = ['Scrubland', 'Temporate', 'Coral Reef', 'Temporate Ocean', 'Tropical', 'Alpine', 'Temporate', 'Desert|Temporate|Scrubland', 'Desert|Scrubland', 'Temporate', 'Scrubland|Subtropical', 'Temporate', 'Dessert|Scrubland', 'Temporate Ocean', 'Temporate', 'Temporate', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Temporate Ocean', 'Temporate', 'Everywhere', 'Coral Reef', 'Dessert|Scrubland', 'Temporate', 'Temporate', 'Tropical|Equatorial', 'Temporate', 'Tropical', 'Dessert|Scrubland', 'Temporate|Scrubland', 'Dessert|Scrubland|Subtropical', 'Sub Tropical| Tropical', 'Dessert|Scrubland', 'Dessert|Scrubland', 'Temporate|Scrubland', 'Coral Reef', 'Temporate'];
 var Endangered = ['CE', 'CE', 'CE', 'CE', 'CE', 'CE', 'CE', 'LC', 'LC', 'VU', 'EN', 'VU', 'LC', 'LC', 'LC', 'VU', 'VU', 'CE', 'LC', 'VU', 'EN', 'LC', 'VU', 'LC', 'LC', 'VU', 'LC', 'EN', 'LC', 'LC', 'EN', 'LC', 'VU', 'LC', 'EN', 'LC', 'VU', 'EN'];
 var Legs = [4, 4, 0, 0, 0, 4, 2, 0, 2, 4, 2, 4, 2, 2, 8, 4, 4, 4, 2, 0, 4, 2, 0, 4, 2, 4, 4, 4, 4, 4, 4, 0, 2, 4, 4, 2, 0, 2];
-console.log(Names[0], Wings[0], Classification[0])
-//TAIL WINGS or FLIPPERS may be around the wrong way - kookaburra says he has a tail, but no wings or flippers, is in temporate and is LC
 
 //Making a seed based on date
 var d = new Date()
 var day = d.getDate()
 var month = d.getMonth()+1
 var year = d.getFullYear()
-var date = year+month+day
+var date = year+month+day+1
 var index = parseInt(Math.floor(date % 38))
 
 //var index = Math.floor(Math.random() * animals.length)
 let target = Names[index];
-console.log(target)
 
 function loadFunction() {
     const table1 = document.createElement('table');
@@ -58,6 +55,9 @@ function loadFunction() {
           submitButton.click();
         }
     })
+
+    hintsInitiator()
+
     
 
     //links html to auto complete function
@@ -165,8 +165,8 @@ function autocomplete(inp, arr) {
     };
 }
 
-//start with classification, size and legs
-//then climate, tail, wings, flippers, endangered
+
+
  function hintsInputer(guessNumber){
    
     if (guessNumber==0) {
@@ -219,3 +219,32 @@ function autocomplete(inp, arr) {
  //" My Classification is '" + Classification[index] + "'"
 
 
+function hintsInitiator(){
+    //start with classification, size and legs
+    document.getElementById("hint1").innerHTML = "Hint 1" + ":" + " I am a '" + Classification[index] + "'.";
+    if (Size[index] == 'XS') {
+        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am extra small in size.";
+    }
+    else if (Size[index] == 'S') {
+        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am small in size.";
+    }
+    else if (Size[index] == 'M') {
+        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am medium in size.";
+    }
+    else if (Size[index] == 'L') {
+        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am large in size.";
+    }
+    else if (Size[index] == 'XL') {
+        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am extra large in size.";
+    }
+    if (Legs[index] == 0){
+        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I DON'T have any legs";
+    }
+    else if (Legs[index] == 1) {
+        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I have 1 leg.";
+    }
+    else if (Legs[index] > 0) {
+        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I have " + Legs[index] + " legs.";
+    }
+
+}
