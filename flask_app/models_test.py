@@ -17,6 +17,7 @@ class ModelsTest(unittest.TestCase):
         
     def tearDown(self):
         db.session.remove()
+        db.session.commit()
         db.drop_all()
 #tests whether the app can properly validate a users password
     def test_password_hashing(self):
@@ -24,7 +25,7 @@ class ModelsTest(unittest.TestCase):
         u.set_password('cits3403isfun')
         self.assertFalse(u.check_password('cits3403sucks'))
         self.assertTrue(u.check_password('cits3403isfun'))
-#tests if registration data is properly validated
+#function to simulate login for testing purposes
     def login(self, username, password):
         return self.app.post('/login', data=dict(
             username=username,
@@ -47,7 +48,7 @@ class ModelsTest(unittest.TestCase):
         self.login('testcase','correctpassword')
         login = self.app.get('/',follow_redirects=True)
         self.assertIn(login.data, self.app.get('/gamepage').data)
-#checks to see if the info that the user is inputting to register is valid 
+#function to simulate registering for testing purposes
     def register(self, username, email, password, password2):
         return self.app.post('/register', data=dict(
             username=username,
@@ -59,14 +60,14 @@ class ModelsTest(unittest.TestCase):
     def test_registration(self):
         response = self.register('iexist', 'iexist@example.com','pwd','pwd')
         self.assertIn(b'Congratulations, you are now a registered user!', response.data)
-#if a user inputs an already taken username
+#test if a user tries to register with a username already in database
     def test_register_non_unique_user(self):
         u1 = Users(username="iexist", email='iexist@example.com')
         db.session.add(u1)
         db.session.commit()
         register = self.register('iexist', 'different@example.com','pwd','pwd')
         self.assertIn(b'Please use a different username.', register.data)
-#if user inputs an already taken email address
+#test if a user tries to register with an email already in database
     def test_register_non_unique_email(self):
         u1 = Users(username="iexist", email='iexist@example.com')
         db.session.add(u1)
