@@ -1,7 +1,4 @@
-// Creates table 6 rows x 2 columns
-
 let guessNum = 0;
-
 var Names = ['Woylie', 'Southern Snapping Turtle', 'Hawksbill Turtle', 'Grey Nurse Shark', 'Sawfish', 'Mountain Pygmy Possum', 'Regent Honey Eater', 'Western Brown Snake', 'Red Kangaroo', 'Koala', 'Rock Wallaby', 'Wombat', 'Wedge Tailed Eagle', 'Pelican', 'Funnel Web Spider', 'Brush Tail Possum ', 'Echidna', 'Numbat', 'Emu', 'Western Australian Dhufish', 'Platapus', 'Sea Gull', 'Whale Shark', 'Dingo', 'Little Penguin', 'Quokka', 'Salt water Crocodile', 'Tasmanian Devil', 'Green Tree Frog', 'Frill Necked Lizard', 'Blue Tongued Lizard', 'Taipan', 'Cassowary', 'Goanna', 'Bilby', 'Kookaburra', 'Dugong', 'Gang Gang Cockatoo'];
 var Classification = ['Mammal', 'Reptile', 'Reptile', 'Fish', 'Fish', 'Mammal', 'Bird', 'Reptile', 'Mammal', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Bird', 'Arachnid', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Bird', 'Reptile', 'Mammal', 'Reptile', 'Reptile', 'Reptile', 'Reptile', 'Bird', 'Reptile', 'Mammal', 'Bird', 'Mammal', 'Bird'];
 var Tail = [true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
@@ -58,14 +55,10 @@ function loadFunction() {
 
     hintsInitiator()
 
-    
-
     //links html to auto complete function
     autocomplete(document.getElementById("guessWord"), Names);
 }
 
-
-//NOTE need to write js to unlock clues as well
 function rowInputer() {
     var table = document.getElementById("guessTable");
     let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
@@ -93,7 +86,6 @@ function rowInputer() {
             document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
             document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
             document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
-            // reveals image of animal
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
 
@@ -117,7 +109,6 @@ function rowInputer() {
             document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
             document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
             markingInput.innerHTML = "&#10060";
-            //document.getElementById("hint" + (guessNum+4)).innerHTML = "Hint " + (guessNum+4) + ":" + "**hint from database**";
             hintsInputer(guessNum);
         }
 
@@ -131,19 +122,15 @@ function autocomplete(inp, arr) {
         var a, b, i, val = this.value;
         closeAllLists();
         if (!val) { }
-        /*create a DIV element that will contain the items (values):*/
         else{
             a = document.createElement("div")
             a.setAttribute("id", this.id + "autocomplete-list")
             a.setAttribute("class", "autocomplete-items")
-            /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a)
             for (i = 0; i < arr.length; i++) {
-                /*find items that make text field and create div */
                 let split = arr[i].split(" ");
                 for (k = 0; k < split.length; k++){
                     if (split[k].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                        //if any of the split by spaces of the arr[i].substr(0,..)...
                         b = document.createElement("div")
                         b.innerHTML = arr[i];
                         b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
@@ -165,14 +152,10 @@ function autocomplete(inp, arr) {
     };
 }
 
-
-
  function hintsInputer(guessNumber){
-   
     if (guessNumber==0) {
         document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I live in a '" + Climate[index] + "' climate.";
     }
-
     else if (guessNumber==1) {
         if (Tail[index] == true) {
             document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have a tail.";
@@ -216,11 +199,7 @@ function autocomplete(inp, arr) {
     }    
  }
 
- //" My Classification is '" + Classification[index] + "'"
-
-
 function hintsInitiator(){
-    //start with classification, size and legs
     document.getElementById("hint1").innerHTML = "Hint 1" + ":" + " I am a '" + Classification[index] + "'.";
     if (Size[index] == 'XS') {
         document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am extra small in size.";
