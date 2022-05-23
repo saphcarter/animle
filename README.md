@@ -15,7 +15,7 @@ On submission your input is displayed in the table above the user input box with
 ### Architecture
 On initial load the page loads the 'gamepage', this displays the game and a navbar as well as links to other pages inside the hints box. The nav bar has a clickable heading "Animal Wilderness" and "Home" on the left hand side. These both take you to '/gamepage' which is also just '/' on startup. On the right hand side of the nav bar are clickable headings which take you to 'stats', 'login' and 'instructions' from left to right and are named accordingly. 
 
-In the hints box is a string "Need help learning the rules? <u> Click here to find out!" </u> which also directs you to the intructions page. And below that is "Haven't logged in yet? Click to <u>login</u> or <u>register!"</u> which take you to login or register pages.
+In the social media footer box is a string "Need help learning the rules? <ins> Click here to find out!" </ins> which also directs you to the intructions page. And below that is "Haven't logged in yet? Click to <ins>login</ins> or <ins>register!"</ins> which take you to login or register pages.
 
 When logging in there is feedback if your username and matching password cannot be found in the database or either field is missing. On successful login you are redirected to the gamepage and the nav bar button that said login now says logout, your user is logged out if you click that.
 
@@ -42,7 +42,7 @@ Steps:
 A python class unit test for testing models and their functions
     1. from WSL terminal, run command: 
         flask_app$ python3 models_test.py
-    - This was our output 
+    2. This was our output 
         test_correct_login (__main__.ModelsTest) ... ok
         test_incorrect_login (__main__.ModelsTest) ... ok
         test_password_hashing (__main__.ModelsTest) ... ok
@@ -54,8 +54,34 @@ A python class unit test for testing models and their functions
         Ran 6 tests in 5.734s
 
         OK
+A selenium python script w/ chrome driver that requires you to be running the localhost website simultaneously. This is due to issues with getting the driver to run from inside a unittest class. Obviously as this is not an isolated test class we do not add things to the database as they would be added to the main database which is not desirable.
+    1. Follow 'how to launch' steps to run the website on local terminal
+    2. From a seperate terminal (we used WSL) run:
+        flask_app$ python3 selenium/chrome_test.py
+    3. This was our output, this is obviously a fully successful output:
+        Testing initial load
+        --> Page renders with no user logged in
+        ------------------------------------------------
+        Testing logging in
+                --> User logged in successfully
+        ------------------------------------------------
+        Testing logout function
+                --> User logged out successfully
+        ------------------------------------------------
+        Testing failed regristration
+                --> Duplicate username correctly detected
+                --> Invalid email correctly detected
+                --> Password mismatch correctly detected
+        ------------------------------------------------
+        Tests run: 6 out of 6
+        Number of successful tests: 6
+        Number of failed tests: 0
+        Number of tests aborted due to previous errors: 0
+    *If you read inside the chrome_test.py file, there are notes of how you can break the code so that exceptions are thrown and handled. This demonstrates what is outputted when the tests are unsuccessful (and that exceptions do not force the program to fail)
+There is also a selenium python script w/ firefox driver that has the same requirements and is also not an isolated test class so we do not add things to the database here either. Follow the same steps for the chrome_test.py file but these changes
+    2. From a seperate terminal (we used WSL) run:
+        flask_app$ python3 selenium/firefox_test.py
+    *Inside firefox_test.py file there are also notes on how you can break the code so that exceptions are thrown and handled. This demonstrates what is outputted when the tests are unsuccessful (and that exceptions do not force the program to fail)
 
-### Commitlogs
-Include commit logs, showing contributions and 
+### Commitlogs & Review from contributing students
 
-### Review from contributing students

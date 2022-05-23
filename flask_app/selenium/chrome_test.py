@@ -16,7 +16,7 @@ chrome_options = Options()
 chrome_options.add_argument("--headless") # Ensures no GUI
 chrome_options.add_argument("--no-sandbox") # Ensures access permissions
 
-# Setting path to chromedriver
+# Setting path to chromedriver, replace this with your own path if needed
 webdriver_service = Service("./chromedriver/stable/chromedriver")
 
 # Open browser with options and service
@@ -57,6 +57,7 @@ print("Testing logging in")
 browser.get('http://localhost:5000/login')
 
 try:
+    #NOTE change (By.ID, "username") to (By.ID, "uname") to break the code and see exception handling
     browser.implicitly_wait(4) # poll for 4 seconds if needed
     username = browser.find_element(By.ID, "username")
     username.send_keys('tester')
@@ -78,6 +79,7 @@ except NoSuchElementException:
 else:
     try:
         # Results
+        #NOTE change (By.ID, "userStatus") to (By.ID, "stat") to break the code and see exception handling
         browser.implicitly_wait(4) # poll for 4 seconds if needed
         userStatus = browser.find_element(By.ID, 'userStatus').get_attribute("innerHTML")
     except NoSuchElementException:
@@ -105,6 +107,8 @@ if userStatus == "Logout":
         logout.click()
         time.sleep(1) # Waiting for actions to occur
 
+        #NOTE change (By.ID, "userStatus") to (By.ID, "stat") to break the code and see exception handling,
+        # this will also abort the next test but there is code to handle that.
         userStatus = browser.find_element(By.ID, 'userStatus').get_attribute("innerHTML")
         # Results
         if userStatus == "Login":
@@ -135,6 +139,7 @@ if logged_out == True:
         username = browser.find_element(By.ID, "username")
         username.send_keys('tester')
 
+        #NOTE change (By.ID, "email") to (By.ID, "mail") to break the code and see exception handling
         browser.implicitly_wait(4) # poll for 4 seconds if needed
         password = browser.find_element(By.ID, "email")
         password.send_keys('tester@')
@@ -167,6 +172,7 @@ if logged_out == True:
             browser.implicitly_wait(4) # poll for 4 seconds if needed
             emailError = browser.find_element(By.ID, 'email_error').get_attribute("innerHTML")
 
+             #NOTE change (By.ID, "password2_error") to (By.ID, "pwd2_err") to break the code and see exception handling
             browser.implicitly_wait(4) # poll for 4 seconds if needed   
             passwordError = browser.find_element(By.ID, 'password2_error').get_attribute("innerHTML")
         
