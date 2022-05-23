@@ -13,7 +13,7 @@
             <div class = "col-md-1"></div>
             <div class = "col-md-6" id = "gameInputs">
               <br>
-                <form  method="post" id="wordInputs"> 
+                <form  method="post" id="wordInputs" autocomplete="off"> 
                   <br>
                   <div class="autocomplete">
                   <input id="guessWord" type="text" placeholder="Animal Guess...">
@@ -27,35 +27,46 @@
                 <br>
             </div>
 
-            <!--Right column-->
             <div class = "col-md-4" id = "game_hints">
-                <h3>Need a hint?</h3><br>
-                <p id="hint1">Hint 1:**hint from database**</p>
-                <p id="hint2">Hint 2:**hint from database**</p>
-                <p id="hint3">Hint 3:**hint from database**</p>
-                <p id="hint4">Hint 4:</p>
-                <p id="hint5">Hint 5:</p>
-                <p id="hint6">Hint 6:</p>
-                <p id="hint7">Hint 7:</p>
-                <p id="hint8">Hint 8:</p>
-                <p id="animalImage">image of animal here</p>
-                <p >Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
-                <p >Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
+                <h3 id= "hintTitle"><strong>Hints to Guess the Animal</strong></h3><br>
+                
+                
+                <p id="hint1">'Initial Hint'</p>
+                <p id="hint2">'Initial Hint'</p>
+                <p id="hint3">'Initial Hint'</p>
+                <p id="hint4"><strong>'Next Hint'</strong></p>
+                <p id="hint5" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint6" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint7" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint8" style="display:None"><strong>'Last Hint'</strong></p> 
             </div>
             <div class = "col-md-1"></div>
         </div> 
-    </div> 
-    <!-- change -->
-        
-            <!--Submit-->
-            <!--Help-->
-        <!--Hints-->
-        <!--Image-->        
-        </div>
-        <div class = "col-md-2"></div>
-    </div>
+    </div>     
+    <div class = "col-md-2"></div>
     <br>
     <br>
 </section>
 
+{% endblock %}
+{% block social_content %}
+
+<section class = "Social_Footer">
+    <div class = "container" id="socialId">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+			<div class="social">
+				<h4>SHARE YOUR WIN!!!</h4>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:5000/gamepage" target="_blank" id = "Facebook" style = "color: blue; background-color: black; padding: 4px;"><strong>Facebook</strong></a>
+				<a href="https://twitter.com/intent/tweet" target="_blank" id = "Twitter" style = "color: cyan; background-color:black; padding: 4px;"><strong>Twitter</strong></a>
+				<br>
+				<br>
+				<p class="social">Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
+				<p class="social">Want to Learn more? <a href="https://www.natureaustralia.org.au/what-we-do/our-priorities/wildlife/wildlife-stories/australias-endangered-animals/">Click Here!</a></p>
+				<p class="social">Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
+			</div>
+        </div>
+	</div>
+    <div class="col-md-2"></div>
+</section>
 {% endblock %}
