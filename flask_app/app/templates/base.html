@@ -72,22 +72,7 @@
     </section>
 
     {% block app_content %}{% endblock %}
-
-	<section class = "Social Footer">
-		<div class = "container">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-8">
-				<footer>
-					<div class="social">
-                        <h4 style="color: lightblue">SHARE YOUR WIN!!!</h4>
-                        <button id = "Facebook" style = "color: blue; background-color: black; border: whitesmoke;"><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:5000/gamepage" target="_blank" style = "color: blue; background-color:black;">Facebook</a></button>
-
-                        <button id = "Twitter", style = "color: lightblue; background-color: black; border: whitesmoke"><a href="https://twitter.com/intent/tweet" style = "color: cyan; background-color:black;">Twitter</a></button>
-					</div>
-				</nav>
-			</div>
-		<div class="col-md-1"></div>
-	</section>
+    {% block social_content %}{% endblock %}
     {% endblock %}
 
 </body>
