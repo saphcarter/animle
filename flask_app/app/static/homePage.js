@@ -1,5 +1,6 @@
 let guessNum = 0;
 
+// Creates table 6 rows x 2 columns
 function loadFunction() {
     const table1 = document.createElement('table');
     for (i = 0; i < 6; i++) {
@@ -70,11 +71,11 @@ function rowInputer() {
             markingInput.innerHTML = "&#10003";
 
             for (let h=guessNum+1;h<6;h++) {
-                document.getElementById("hint" + (h+3)).innerHTML = "Hint " + (h+3) + ":" + "**hint from database**";
                 document.getElementById("row" + (h) + "col1").style.backgroundColor = 'green';
                 document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
                 document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
                 document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
+                hintsInputer()
 
             }
         }
@@ -132,7 +133,8 @@ function autocomplete(inp, arr) {
     };
 }
 
- function hintsInputer(guessNumber){
+function hintsInputer(guessNumber){
+
     if (guessNumber==0) {
         document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I live in a '" + Climate[index] + "' climate.";
     }
@@ -179,31 +181,34 @@ function autocomplete(inp, arr) {
     }    
  }
 
+
+
 function hintsInitiator(){
-    document.getElementById("hint1").innerHTML = "Hint 1" + ":" + " I am a '" + Classification[index] + "'.";
+    document.getElementById("hint1").innerHTML = " I am a '" + Classification[index] + "'.";
+    
     if (Size[index] == 'XS') {
-        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am extra small in size.";
+        document.getElementById("hint2").innerHTML = "I am extra small in size.";
     }
     else if (Size[index] == 'S') {
-        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am small in size.";
+        document.getElementById("hint2").innerHTML = "I am small in size.";
     }
     else if (Size[index] == 'M') {
-        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am medium in size.";
+        document.getElementById("hint2").innerHTML = "I am medium in size.";
     }
     else if (Size[index] == 'L') {
-        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am large in size.";
+        document.getElementById("hint2").innerHTML = "I am large in size.";
     }
     else if (Size[index] == 'XL') {
-        document.getElementById("hint2").innerHTML = "Hint 2" + ":" + " I am extra large in size.";
+        document.getElementById("hint2").innerHTML = "I am extra large in size.";
     }
     if (Legs[index] == 0){
-        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I DON'T have any legs";
+        document.getElementById("hint3").innerHTML = "I DON'T have any legs";
     }
     else if (Legs[index] == 1) {
-        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I have 1 leg.";
+        document.getElementById("hint3").innerHTML = "I have 1 leg.";
     }
     else if (Legs[index] > 0) {
-        document.getElementById("hint3").innerHTML = "Hint 3" + ":" + " I have " + Legs[index] + " legs.";
+        document.getElementById("hint3").innerHTML = "I have " + Legs[index] + " legs.";
     }
 
 }
