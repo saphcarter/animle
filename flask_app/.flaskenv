@@ -1,2 +1,1 @@
 FLASK_APP=animle.py
-FLASK_DEBUG=1

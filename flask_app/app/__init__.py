@@ -7,6 +7,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Database configuration - currently set to an SQLite relative path
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
