@@ -28,18 +28,17 @@
             </div>
 
             <div class = "col-md-4" id = "game_hints">
-                <h3>Need a hint?</h3><br>
-                <p id="hint1">Hint 1:**hint from database**</p>
-                <p id="hint2">Hint 2:**hint from database**</p>
-                <p id="hint3">Hint 3:**hint from database**</p>
-                <p id="hint4">'Next Hint'</p>
-                <p id="hint5">'Next Hint'</p>
-                <p id="hint6">'Next Hint'</p>
-                <p id="hint7">'Next Hint'</p>
-                <p id="hint8">'Last Hint'</p>
-                <p >Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
-                <p>Want to Learn more? <a href="https://www.natureaustralia.org.au/what-we-do/our-priorities/wildlife/wildlife-stories/australias-endangered-animals/">Click Here!</a></p>
-                <p >Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
+                <h3><strong>Need a Hint?</strong></h3><br>
+                
+                
+                <p id="hint1">'Initial Hint'</p>
+                <p id="hint2">'Initial Hint'</p>
+                <p id="hint3">'Initial Hint'</p>
+                <p id="hint4"><strong>'Next Hint'</strong></p>
+                <p id="hint5" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint6" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint7" style="display:None"><strong>'Next Hint'</strong></p>
+                <p id="hint8" style="display:None"><strong>'Last Hint'</strong></p> 
             </div>
             <div class = "col-md-1"></div>
         </div> 
@@ -49,4 +48,25 @@
     <br>
 </section>
 
+{% endblock %}
+{% block social_content %}
+
+<section class = "Social_Footer">
+    <div class = "container" id="socialId">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+            <footer>
+                <div class="social">
+                    <h4>SHARE YOUR WIN!!!</h4>
+                    <button id = "Facebook" style = "color: blue; background-color: black; border: whitesmoke;"><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:5000/gamepage" target="_blank" style = "color: blue; background-color:black;"><strong>Facebook</strong></a></button>
+                    <button id = "Twitter", style = "color: lightblue; background-color: black; border: whitesmoke"><a href="https://twitter.com/intent/tweet" style = "color: cyan; background-color:black;"><strong>Twitter</strong></a></button>
+                    <br><br>
+                    <p class="social">Need help learning the rules? <a href="{{ url_for('instructions') }}">Click here to find out!</a></p>
+                    <p class="social">Want to Learn more? <a href="https://www.natureaustralia.org.au/what-we-do/our-priorities/wildlife/wildlife-stories/australias-endangered-animals/">Click Here!</a></p>
+                    <p class="social">Haven't logged in yet? Click to <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register!</a></p>
+                </div>
+            </nav>
+        </div>
+    <div class="col-md-2"></div>
+</section>
 {% endblock %}

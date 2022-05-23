@@ -1,4 +1,5 @@
 let guessNum = 0;
+let previousGuesses = [];
 
 // Creates table 6 rows x 2 columns
 function loadFunction() {
@@ -43,57 +44,79 @@ function loadFunction() {
 function rowInputer() {
     var table = document.getElementById("guessTable");
     let inputWord = document.getElementById("wordInputs").elements["guessWord"].value;
+    guessNum += 1;
+    
+
     
     if (inputWord.length == 0) {
         alert("You need to guess an Animal!!");
+        document.getElementById("wordInputs").elements["guessWord"].value = '';
     }
      else if (Names.includes(inputWord) == false) {
         alert("Input is not an Australian animal in this game!!");
+        document.getElementById("wordInputs").elements["guessWord"].value = '';
+    }
+    else if (previousGuesses.includes(inputWord.toUpperCase()) == true){
+        alert("You have already guessed this animal.");
+        document.getElementById("wordInputs").elements["guessWord"].value = '';
     }
 
     else {
-        let currentInputId = "row" + guessNum + "col0";
+        //Inputs users guess into table and updates guesses remaining
+        previousGuesses.push(inputWord.toUpperCase())
+        let currentInputId = "row" + (guessNum-1) + "col0";
         let tableInput = document.getElementById(currentInputId);
         tableInput.innerHTML = inputWord.toUpperCase();
 
-        let markingInputId = "row" + guessNum + "col1";
+        let markingInputId = "row" + (guessNum-1) + "col1";
         let markingInput = document.getElementById(markingInputId);
 
         let formSection = document.getElementById("wordInputs");
-        document.getElementById("finalMessage").innerHTML = "You have " + (5-guessNum) + " guesses remaining!"
+        document.getElementById("finalMessage").innerHTML = "You have " + (6-guessNum) + " guesses remaining!"
         document.getElementById("wordInputs").elements["guessWord"].value = '';
 
+        //If user guesses correctly:
         if (inputWord.toUpperCase() == target.toUpperCase()) {
-            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'green';
-            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'green';
+            document.getElementById("row" + (guessNum-1) + "col1").style.backgroundColor = 'green';
+            document.getElementById("row" + (guessNum-1) + "col0").style.backgroundColor = 'green';
             document.getElementById("finalMessage").innerHTML = "Congrats you got it correct!!";
             formSection.style.display = "none";
             markingInput.innerHTML = "&#10003";
+            //post guessNum variable
 
-            for (let h=guessNum+1;h<6;h++) {
-                document.getElementById("row" + (h) + "col1").style.backgroundColor = 'green';
-                document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
-                document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
-                document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
-                hintsInputer()
-
+            //Making remaining rows green
+            if (guessNum != 6) {
+                for (let h=guessNum;h<6;h++) {
+                    document.getElementById("row" + (h) + "col1").style.backgroundColor = 'green';
+                    document.getElementById("row" + (h) + "col0").style.backgroundColor = 'green';
+                    document.getElementById("row" + (h) + "col0").innerHTML = "&#10003  " + "&#10003  " + "&#10003  " + "&#10003  ";
+                    document.getElementById("row" + (h) + "col1").innerHTML = "&#10003";
+                    console.log(guessNum);
+                }
+            }  
+            
+            //Implementing the rest of the hints
+            for (let i=guessNum; i<7; i++){
+                document.getElementById("hint"+(i+3)).style.display = "block";
+                hintsInputer(i)
             }
+
+            
         }
-        else if ((guessNum == 5) && (inputWord != target)) {
-            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
-            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
+        else if ((guessNum == 6) && (inputWord != target)) {
+            document.getElementById("row" + (guessNum-1) + "col1").style.backgroundColor = 'grey';
+            document.getElementById("row" + (guessNum-1) + "col0").style.backgroundColor = 'grey';
             markingInput.innerHTML = "&#10060";
             formSection.style.display = "none";
             document.getElementById("finalMessage").innerHTML = "Sorry you have run out of guesses :( <br> The answer was: '"+target.toUpperCase()+"'";
         }
         else if (inputWord.toUpperCase() != target.toUpperCase()){
-            document.getElementById("row" + guessNum + "col1").style.backgroundColor = 'grey';
-            document.getElementById("row" + guessNum + "col0").style.backgroundColor = 'grey';
+            document.getElementById("row" + (guessNum-1) + "col1").style.backgroundColor = 'grey';
+            document.getElementById("row" + (guessNum-1) + "col0").style.backgroundColor = 'grey';
             markingInput.innerHTML = "&#10060";
             hintsInputer(guessNum);
+            document.getElementById("hint"+(guessNum+4)).style.display = "block";
         }
-
-        guessNum += 1;
     }
 }
 
@@ -135,48 +158,48 @@ function autocomplete(inp, arr) {
 
 function hintsInputer(guessNumber){
 
-    if (guessNumber==0) {
-        document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I live in a '" + Climate[index] + "' climate.";
+    if (guessNumber==1) {
+        document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I live in a '" + Climate[index] + "' climate.";
     }
-    else if (guessNumber==1) {
+    else if (guessNumber==2) {
         if (Tail[index] == true) {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have a tail.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I have a tail.";
         }
         else {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have a tail.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I DON'T have a tail.";
         }
         }
     
-    else if (guessNumber==2) {
-        if (Wings[index] == true) {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have wings.";
-        }
-        else {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have wings.";
-        }
-        }
-
     else if (guessNumber==3) {
-        if (Flippers[index] == true) {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I have a fins or flippers.";
+        if (Wings[index] == true) {
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I have wings.";
         }
         else {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " I DON'T have fins or flippers.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I DON'T have wings.";
         }
         }
 
     else if (guessNumber==4) {
+        if (Flippers[index] == true) {
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I have a fins or flippers.";
+        }
+        else {
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "I DON'T have fins or flippers.";
+        }
+        }
+
+    else if (guessNumber==5) {
         if (Endangered[index] == 'CE') {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is critically endangered.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "My population is critically endangered.";
         }
         else if (Endangered[index] == 'LC') {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is of least concern.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "My population is of least concern.";
         }
         else if (Endangered[index] == 'VU') {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is vulnerable.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "My population is vulnerable.";
         }
         else if (Endangered[index] == 'EN') {
-            document.getElementById("hint" + (guessNumber + 4)).innerHTML = "Hint " + (guessNumber + 4) + ":" + " My population is endangered.";
+            document.getElementById("hint" + (guessNumber + 3)).innerHTML = "My population is endangered.";
         }
     }    
  }
@@ -213,6 +236,7 @@ function hintsInitiator(){
 
 }
 
+//Shortcut for database - as ran out of time to completely implement database
 var Names = ['Woylie', 'Southern Snapping Turtle', 'Hawksbill Turtle', 'Grey Nurse Shark', 'Sawfish', 'Mountain Pygmy Possum', 'Regent Honey Eater', 'Western Brown Snake', 'Red Kangaroo', 'Koala', 'Rock Wallaby', 'Wombat', 'Wedge Tailed Eagle', 'Pelican', 'Funnel Web Spider', 'Brush Tail Possum ', 'Echidna', 'Numbat', 'Emu', 'Western Australian Dhufish', 'Platapus', 'Sea Gull', 'Whale Shark', 'Dingo', 'Little Penguin', 'Quokka', 'Salt water Crocodile', 'Tasmanian Devil', 'Green Tree Frog', 'Frill Necked Lizard', 'Blue Tongued Lizard', 'Taipan', 'Cassowary', 'Goanna', 'Bilby', 'Kookaburra', 'Dugong', 'Gang Gang Cockatoo'];
 var Classification = ['Mammal', 'Reptile', 'Reptile', 'Fish', 'Fish', 'Mammal', 'Bird', 'Reptile', 'Mammal', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Bird', 'Arachnid', 'Mammal', 'Mammal', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Fish', 'Mammal', 'Bird', 'Bird', 'Reptile', 'Mammal', 'Reptile', 'Reptile', 'Reptile', 'Reptile', 'Bird', 'Reptile', 'Mammal', 'Bird', 'Mammal', 'Bird'];
 var Tail = [true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];

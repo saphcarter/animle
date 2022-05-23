@@ -72,20 +72,7 @@
     </section>
 
     {% block app_content %}{% endblock %}
-
-	<section class = "Social Footer">
-		<div class = "container">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-8">
-				<div class="social">
-					<h4 style="color: lightblue">SHARE YOUR WIN!!!</h4>
-					<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:5000/gamepage" target="_blank" id = "Facebook" style = "color: blue; background-color: black;" >Facebook</a>
-					<a href="https://twitter.com/intent/tweet" target="_blank" id = "Twitter" style = "color: cyan; background-color:black;">Twitter</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-1"></div>
-	</section>
+    {% block social_content %}{% endblock %}
     {% endblock %}
 
 </body>

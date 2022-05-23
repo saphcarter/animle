@@ -7,12 +7,12 @@ body {
     background-color: white;
 }
 
-.h1 {
+h1 {
     color: white
 }
 
-.h4 {
-    color: lightblue
+h4 {
+    color: white
 }
   
 .nav {
@@ -89,4 +89,12 @@ td, table {
 
 .autocomplete-items div:hover {
     background-color: #ded9d9;
+}
+
+#socialId{
+    background-color: brown;
+}
+
+p.social{
+    color:white;
 }
