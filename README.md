@@ -26,17 +26,17 @@ Steps:
 1. Cd into the flask_app folder, run command: (This will take a while to run, don't worry.)
 		
         $ python3 -m venv venv
-
 2. Then run this command which produces the following output indicating your venv successfully activated:
+
         $ source venv/bin/activate
 		(venv) $ _
 3. Then with pip run:
+
         $ pip install -r requirements.txt
 4. This will install all the packages from our requirements file.
 5. Run this command:
 	    
         $ flask run
-
 6. This opens up the website at http://127.0.0.1:5000
 
 ### Unit tests
